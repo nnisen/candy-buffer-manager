@@ -2,7 +2,7 @@ aside {
   position : absolute;
   display: inline-block;
   float:left;
-  margin-top: 2em;
+  padding: 2em 0.5em;
   height: 100%;
 }
 
@@ -14,4 +14,16 @@ footer {
 
 .navbuttons button {
 margin : 0.5em;
+}
+
+.green {
+	background-color: #79b654;
+}
+
+.lightgreen {
+	background-color: #99d674;
+}
+
+header {
+
 }
