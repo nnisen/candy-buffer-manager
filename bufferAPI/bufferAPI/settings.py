@@ -63,6 +63,13 @@ DATABASES = {
     }
 }
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True
+    },
+]
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 

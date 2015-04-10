@@ -4,7 +4,10 @@ from django.contrib import admin
 urlpatterns = patterns('',
     # Examples:
 	
-    url(r'^$', 'bufferAPI.views.home', name='home'),
+	url(r'^$', 'bufferAPI.views.test'),
+	
+	url(r'^$', 'bufferAPI.views.home', name='home'),
+	
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
