@@ -1,0 +1,17 @@
+aside {
+  position : absolute;
+  display: inline-block;
+  float:left;
+  margin-top: 2em;
+  height: 100%;
+}
+
+footer {
+  position : absolute;
+  display: inline-block;
+  bottom : 0px;  
+}
+
+.navbuttons button {
+margin : 0.5em;
+}
