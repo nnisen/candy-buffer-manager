@@ -4,12 +4,30 @@ aside {
   float:left;
   padding: 2em 0.5em;
   height: 100%;
+  /*min-height: 600px;*/
+}
+
+#cart{
+
+  margin-left : 30px;
+  background: url("http://static.freepik.com/free-photo/shopping-cart-2_318-9228.jpg")
+  no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);
 }
 
 footer {
   position : absolute;
   display: inline-block;
   bottom : 0px;  
+}
+
+#maincontainer {
+  position : absolute;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+/*  min-height : 500px;*/
+  
+  /*right: 0px;*/
 }
 
 .navbuttons button {
