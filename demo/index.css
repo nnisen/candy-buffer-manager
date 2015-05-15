@@ -26,9 +26,17 @@ li.customer-row span{
   padding : 0.2em;
   border-radius : 0.2em;  
 }
-li.customer-row span:hover {  
+
+li.customer-row span.selected-customer{
   background-color : #99f;
 }
+
+li.customer-row span:hover {  
+  background-color : #99f;
+  cursor : pointer;
+}
+
+
 
 header {
   height : 5%;
@@ -61,12 +69,20 @@ aside {
   /*min-height: 600px;*/
 }
 
-#cart{
 
-  margin-left : 30px;
-  background: url("http://static.freepik.com/free-photo/shopping-cart-2_318-9228.jpg")
-  no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);
+/*#cartlink {
+  position : absolute;
+  width : 50px;
+  height : 50px;
+  cursor: pointer;
+  z-index : 9003;
 }
+
+#cart{ 
+  margin-left : 0px;
+  background: url("http://static.freepik.com/free-photo/shopping-cart-2_318-9228.jpg")
+  no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);  
+}*/
 
 footer {
   position : absolute;

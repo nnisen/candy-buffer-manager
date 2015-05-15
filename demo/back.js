@@ -12,8 +12,7 @@ function changeSubpage(srcnum, tgtnum){
       
       if(tgtnum !== 1){
 
-      }
-      
+      }      
       activeSubpage = tgtnum;
     }
     else throw new Error("NO PAGE AAARGAAHHH");
@@ -21,10 +20,11 @@ function changeSubpage(srcnum, tgtnum){
 
 $(document).ready(function(){
   
-  $(".customer-row span").on("click", function(){
-  
-    var customerName = $(this).text();
+  $(".customer-row span").on("click", function(){  
+    var customerName = $(this).text();    
     //var customerId = $(this).parent().attr("data-customer-id");
+    $("#customer-selection-list > * > *").removeClass("selected-customer");
+    $(this).addClass("selected-customer");    
     $("#selected-customer").text(customerName);
     
   });

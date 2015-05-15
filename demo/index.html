@@ -9,19 +9,31 @@
   <script src="https://code.jquery.com/jquery-2.1.3.js"></script>  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>    
   <script src="index.js"></script>  
+  <script src="basket.js"></script>  
     
 </head>
 <body>
 
   <header class="green">    
-    <div class="btn-group navbuttons btn-group-justified" role="group">
-      <div class="btn-group" role="group">
+    <div class="row navbuttons">      
+      <div class="col-xs-4">
         <button type="button" class="btn btn-default">Lisää bufferiin rahaa</button>
       </div>
-            
-      <div class="btn-group" role="group" id="cart"> 6 </div>
-      
-      <div class="btn-group" role="group">
+      <div class="col-xs-4">
+        <div id="basket-dropdown" class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            Ostoskori : <span id="basket-prods">0</span> tuotetta, <span id="basket-sum">0</span> €
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a tabindex="-1" href="#">Ei tuotteita</a></li>            
+          </ul>
+        </div>
+      </div>
+      <!-- 
+      <div class="btn-group" role="group" id="cart">0<span id="cartlink"></span></div>
+      -->
+      <div class="col-xs-4">
         <a href="back.html"><button type="button" class="btn btn-default">Osta tuotteet >></button></a>
       </div>
     </div>
@@ -45,7 +57,7 @@
     
     <div id="productbox" class="col-xs-9">
       
-      <div class="product col-xs-12 col-sm-6 col-md-4">
+      <div data-product-id="1" data-product-price="0.6" class="product col-xs-12 col-sm-6 col-md-4">
         <div class="thumbnail">
           <img src="http://tuontitukku.fi/image_view.php?name=6/laajakuva_kismet.jpg" alt="...">
           <div class="caption">
@@ -53,9 +65,9 @@
                 Kismet
               </span>
               <span class="float-right col-sm-6">
-                0.6€
+                0,6€
               </span>            
-            <p><a href="#" class="btn btn-primary" role="button">Lisää</a></p>
+            <p><a href="#" class="buy-product btn btn-primary" role="button">Lisää</a></p>
           </div>
         </div>
       </div>
