@@ -7,7 +7,5 @@
   
   for(var i = 0; i < prods; i++){    
     $(prod).clone().appendTo(box);
-  }
-  
-  
+  }    
 })

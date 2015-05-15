@@ -15,8 +15,17 @@
     <div class="btn-group navbuttons btn-group-justified" role="group">
       <div class="btn-group" role="group">
         <a href="index.html"><button type="button" class="btn btn-default"><< Etusivulle</button></a>
+          
+        <!-- 
+        <a href="index.html"><button type="button" class="btn btn-default">< Edellinen</button></a>
+        -->
+        
+        <a id="subpage-back" href="#"><button type="button" class="btn btn-default">< Edellinen</button></a>
+        
+        
+        
       </div>
-            
+        
       <!--
       <div class="btn-group" role="group" id="cart2"> 6 </div>
       -->
@@ -35,10 +44,23 @@
       </aside>
 
       <div class="col-xs-9 subpage" id="page-1">      
-        <div sourcepage="1" targetpage="2" class="subpage-submit btn btn-default col-xs-12 third-height-1">
-          Tasaraha
+      
+      <span>Ostoksesi :</span>
+      <ul>
+      <li>Kismet 1 €</li>
+      <li>Kismet 1 €</li>
+      <li>Kismet 1 €</li>      
+      </ul>
+      
+      <p>Summa : 3 €</p>
+      
+      <span>Paljonko maksoit?</span>
+      <input type="text"></input>      
+      
+        <div sourcepage="1" targetpage="2" class="subpage-submit btn btn-default">
+          Jatka >>
         </div>
-        
+       <!--  
         <div sourcepage="1" targetpage="3" class="subpage-submit btn btn-default col-xs-12 third-height-2">
           Ei tasaraha
         </div>
@@ -46,35 +68,61 @@
         <div sourcepage="1" targetpage="4" class="subpage-submit btn btn-default col-xs-12 third-height-3">
           Käytä bufferia
         </div>
-          
-      
+       -->
       </div>
       
       <div class="col-xs-9" id="page-2" style="display:none">
 
-        <div class="btn-group-vertical" role="group">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default">kategoria 2a</button>
-          </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default">kategoria 2b</button>
-          </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default">kategoria 2c</button>
-          </div>
+        <span>Kuka olet?</span>
+        <ul>
+          <li class="customer-row" data-customer-id=""><span>Aapo</span></li>
+          <li class="customer-row" data-customer-id=""><span>Petteri</span></li>
+          <li class="customer-row" data-customer-id=""><span>Jaska</span></li>
+          <li class="customer-row" data-customer-id=""><span>Liisa</span></li>
+          <li class="customer-row" data-customer-id=""><span>Anna-Maija</span></li>
+          <li class="customer-row" data-customer-id=""><span>Simo</span></li>
+          <li class="customer-row" data-customer-id=""><span>Hilla</span></li>
+          <li class="customer-row" data-customer-id=""><span>Dmitri</span></li>
+        </ul>
+        
+        <p>
+        <span>Valitsemasi käyttäjä : </span>
+        <span id="selected-customer"></span>         
+        </p>
+        
+        <div sourcepage="2" targetpage="3" class="subpage-submit btn btn-default">
+          Jatka >>
         </div>
-      
+        
       </div>
       
       <div class="col-xs-9" id="page-3" style="display:none">
 
-        3
+        <p>Yhteenveto :</p>
+        
+        <span>Ostoksesi :</span>
+        <ul>
+          <li>Kismet 1 €</li>
+          <li>Kismet 1 €</li>
+          <li>Kismet 1 €</li>      
+        </ul>
+        
+        <p>Ostosten summa:<span>3 €</span></p>
+        <p>Rahaa annettu:<span></span></p>        
+        <p>Valittu käyttäjä:<span></span></p>
+        <p>Rahaa bufferissa nyt:<span></span></p>
+        <p>Rahaa bufferissa oston jälkeen:<span></span></p>
+        <p><span></span></p>
+        
+        <div sourcepage="3" targetpage="4" class="subpage-submit btn btn-default">
+          OSTA
+        </div>
       
       </div>
       
       <div class="col-xs-9" id="page-4" style="display:none">
 
-        4
+        KIITOS
       
       </div>
     

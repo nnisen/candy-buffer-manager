@@ -18,6 +18,18 @@ overflow-y : hidden;
 }
 */
 
+li.customer-row {  
+  list-style-type: none;  
+}
+
+li.customer-row span{
+  padding : 0.2em;
+  border-radius : 0.2em;  
+}
+li.customer-row span:hover {  
+  background-color : #99f;
+}
+
 header {
   height : 5%;
 }
