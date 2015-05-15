@@ -1,4 +1,4 @@
-$(document).ready(function(){  
+﻿$(document).ready(function(){  
   var prods = 6;
   var box = $("#productbox");  
   $(".product").css("display","normal");
