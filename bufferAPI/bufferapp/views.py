@@ -18,5 +18,3 @@ def back(request):
 def products(request):
   context = {"product_list" : Product.objects.all()}
   return render(request, 'product.html', context)
-  
-  
