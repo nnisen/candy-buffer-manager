@@ -34,6 +34,7 @@ function getEmptyDropdownElement(cls){
     return listelem;
 }
 
+// updates the navbar counters
 function updateBasket(){
   var prodSum = 0;
   for(var i = 0; i < productBasket.length; i++){
@@ -64,21 +65,6 @@ function productRemoveButtonFunction(elem){
   
   listParent.remove();  
   updateBasket();  
-  /*
-  var keepGoing = true;  
-  for(var i = 0; i < productBasket.length; i++){
-    if(productBasket[i].id === targetId){
-      console.log("BEFORE-AFTER");
-      console.log()
-      console.log(productBasket.length);
-      productBasket.splice(i, 1);
-      console.log(productBasket.length);
-      listParent.remove();
-      //console.log("DID IT");      
-      keepGoing = false;   
-    }
-  } 
-  */
 }
 
 function productAddButtonFunction(buttonelem){    
@@ -95,17 +81,14 @@ function productAddButtonFunction(buttonelem){
   };
 
   productBasket[productBasket.length] = productInfo;
-
-  console.log(productBasket);  
+  console.log(productBasket);    
   
-  var newElem = getProductDropdownElement(productInfo);
-  
-  $("#basket-dropdown .basket-list").append(newElem);
-  
+  // loads to list
+  var newElem = getProductDropdownElement(productInfo);  
+  $("#basket-dropdown .basket-list").append(newElem);  
   $($(newElem).find(".basket-product-remover")).click(function(){
     productRemoveButtonFunction(this);
-  });
-  
+  });  
   updateBasket();
 }
 
@@ -113,8 +96,20 @@ $(document).ready(function(){
   
   // loads from cookies if no prods are in basket
   if(!productBasket.length && Cookies.get("basket").length)
+  {
     productBasket = JSON.parse(Cookies.get("basket"));
-  
+    
+    for(var i = 0; i < productBasket.length; i++){
+    // loads to list as well
+      var newElem = getProductDropdownElement(productBasket[i]);  
+      $("#basket-dropdown .basket-list").append(newElem);  
+      $($(newElem).find(".basket-product-remover")).click(function(){
+        productRemoveButtonFunction(this);
+      });          
+    }
+    updateBasket();
+  }
+    
   updateBasket();
   
   $("#go-to-buy").click(function(){
