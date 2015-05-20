@@ -1,16 +1,18 @@
 ﻿$(document).ready(function(){  
-  var prods = 6;
+  //var prods = 6;
   var box = $("#productbox");  
   
   var all = $.get("products").success(function(){
-    console.log(all)
-    console.log(all.responseText)
     $(all.responseText).appendTo(box);
+    
+    $(".add-product-to-basket").on("click", function(){
+      productAddButtonFunction(this);    
+    });
   });
   
-  
-  
-  
+  //console.log(all)
+  //console.log(all.responseText)
+    
   // dummy ui
   //$(".product").css("display","normal");  
   /*
@@ -19,8 +21,5 @@
     $(prod).clone().appendTo(box);
   }    
   */
-  
-  
-
   
 })
