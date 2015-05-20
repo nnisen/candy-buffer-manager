@@ -11,11 +11,20 @@ class Customer(models.Model):
         return self.username
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    # products = models.ManyToManyField(Product)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     inventory = models.IntegerField()
     image = models.ImageField(upload_to='products')
+    categories = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.name
@@ -39,11 +48,3 @@ class Sale(models.Model):
 
     def __str__(self):
         return self.product.name
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=200, unique=True)
-    products = models.ManyToManyField(Product)
-
-    def __str__(self):
-        return self.name
