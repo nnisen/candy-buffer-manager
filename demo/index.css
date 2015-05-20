@@ -1,3 +1,65 @@
+﻿body {
+overflow-y : hidden;
+}
+
+
+#page-1 > * {
+  /*height : 100%;*/
+}
+/*
+#back-maincontainer {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+#back-maincontainer > *{
+    display:table-row;
+    height:0px; 
+}
+*/
+
+li.customer-row {  
+  list-style-type: none;  
+}
+
+li.customer-row span{
+  padding : 0.2em;
+  border-radius : 0.2em;  
+}
+
+li.customer-row span.selected-customer{
+  background-color : #99f;
+}
+
+li.customer-row span:hover {  
+  background-color : #99f;
+  cursor : pointer;
+}
+
+
+
+header {
+  height : 5%;
+}
+
+.belowheader {
+  height : 95%;
+}
+
+.third-height-1 {   
+  height : 30%;
+  top : 0px;
+}
+.third-height-2 {  
+  height : 30%;
+  /*top : 33%;*/
+}
+.third-height-3 {  
+  height : 30%;
+  /*top : 66%;*/
+}
+
+
 aside {
   position : absolute;
   display: inline-block;
@@ -7,12 +69,20 @@ aside {
   /*min-height: 600px;*/
 }
 
-#cart{
 
-  margin-left : 30px;
-  background: url("http://static.freepik.com/free-photo/shopping-cart-2_318-9228.jpg")
-  no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);
+/*#cartlink {
+  position : absolute;
+  width : 50px;
+  height : 50px;
+  cursor: pointer;
+  z-index : 9003;
 }
+
+#cart{ 
+  margin-left : 0px;
+  background: url("http://static.freepik.com/free-photo/shopping-cart-2_318-9228.jpg")
+  no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);  
+}*/
 
 footer {
   position : absolute;
@@ -20,7 +90,7 @@ footer {
   bottom : 0px;  
 }
 
-#maincontainer {
+#maincontainer, #maincontainer-back {
   position : absolute;
   width: 100%;
   height: 100%;
@@ -28,6 +98,14 @@ footer {
 /*  min-height : 500px;*/
   
   /*right: 0px;*/
+}
+
+#maincontainer-back {
+  /*height : 500px;*/
+}
+
+.subpage{
+    height: 100%;
 }
 
 .navbuttons button {

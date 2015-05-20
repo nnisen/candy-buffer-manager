@@ -1,4 +1,4 @@
-$(document).ready(function(){  
+﻿$(document).ready(function(){  
   var prods = 6;
   var box = $("#productbox");  
   $(".product").css("display","normal");
@@ -7,7 +7,5 @@ $(document).ready(function(){
   
   for(var i = 0; i < prods; i++){    
     $(prod).clone().appendTo(box);
-  }
-  
-  
+  }    
 })
