@@ -4,9 +4,11 @@ from django.contrib import admin
 urlpatterns = patterns('',
     # Examples:
 	
-	url(r'^$', 'bufferAPI.views.test'),
-	
-	url(r'^$', 'bufferAPI.views.home', name='home'),
+  url(r'^$', 'bufferapp.views.index'),	
+  url(r'^back$', 'bufferapp.views.back'),	
+  
+  url(r'^test$', 'bufferapp.views.test'),	
+  #url(r'^$', 'bufferapp.views.home', name='home'),
 	
     # url(r'^blog/', include('blog.urls')),
 
