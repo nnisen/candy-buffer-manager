@@ -8,7 +8,11 @@ urlpatterns = patterns('',
 
     url(r'^test$', 'bufferapp.views.test'),
     url(r'^products$', 'bufferapp.views.products'),
+    url(r'^products/(?P<product_id>[0-9]+)/$', 'bufferapp.views.product'),
+
+
     url(r'^categories$', 'bufferapp.views.catgories'),
+
     url(r'^customers$', 'bufferapp.views.customers'),
 
     url(r'^bufferapp/', include('bufferapp.urls')),
