@@ -1,26 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import Product
 
-# Create your views here.
-# def products(request, product_id):
-#     return HttpResponse("You're looking at question %s." % product_id)
-
+# test page
 def test(request):
   return HttpResponse("Yay, test page")
-  
-#def index(request):
-  #return HttpResponse("Yay, test page")
-  
-#def static(request):
-  #return render(request, 'static/index.html')
-    
+
+# front page
 def index(request):
-  return render(request, 'index.html')
-#context = {'latest_question_list': latest_question_list}  
+  return render(request, 'index.html')  
   
-  
+# "backend" page
 def back(request):
   return render(request, 'back.html')
+    
+def products(request):
+  context = {"product_list" : Product.objects.all()}
+  return render(request, 'product.html', context)
   
   

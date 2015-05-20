@@ -8,6 +8,7 @@ urlpatterns = patterns('',
   url(r'^back$', 'bufferapp.views.back'),	
   
   url(r'^test$', 'bufferapp.views.test'),	
+  url(r'^products$', 'bufferapp.views.products'),	
   #url(r'^$', 'bufferapp.views.home', name='home'),
 	
     # url(r'^blog/', include('blog.urls')),

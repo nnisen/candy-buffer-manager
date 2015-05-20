@@ -1,6 +1,4 @@
-﻿console.log("back.js");
-
-var activeSubpage = 1;
+﻿var activeSubpage = 1;
 
 function changeSubpage(srcnum, tgtnum){
     
@@ -12,7 +10,7 @@ function changeSubpage(srcnum, tgtnum){
       
       activeSubpage = tgtnum;
     }
-    else throw new Error("NO PAGE AAARGAAHHH");
+    else throw new Error("NO PAGE AAARGHHH");
 };
 
 $(document).ready(function(){
@@ -22,8 +20,7 @@ $(document).ready(function(){
     //var customerId = $(this).parent().attr("data-customer-id");
     $("#customer-selection-list > * > *").removeClass("selected-customer");
     $(this).addClass("selected-customer");    
-    $("#selected-customer").text(customerName);
-    
+    $("#selected-customer").text(customerName);    
   });
   
   $("#subpage-back").on("click", function(){
