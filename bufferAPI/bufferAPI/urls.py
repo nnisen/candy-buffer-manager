@@ -13,7 +13,6 @@ urlpatterns = patterns('',
 
     url(r'^categories$', 'bufferapp.views.catgories'),
 
-
     url(r'^customers$', 'bufferapp.views.customers'),
 
     url(r'^bufferapp/', include('bufferapp.urls')),

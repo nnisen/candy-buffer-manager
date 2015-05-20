@@ -1,11 +1,6 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-=======
-from django.http import HttpResponse
-from django.http import JsonResponse
->>>>>>> cd2332eb3a06986c1e5dfcb5067b836c667242ae
 
 from .models import Product, Category, Customer
 
@@ -43,6 +38,6 @@ def catgories(request):
 
 
 def customers(request):
-    context = {"customer_list": Customer.objects.all()}
-    return JsonResponse({"key": "value"})
-    #return render(request, 'user.html', context)
+    customers = Customer.objects.all()
+    data = serializers.serialize("json", customers)
+    return HttpResponse(data, content_type="application/json")
