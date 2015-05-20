@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.core import serializers
 
 from .models import Product, Category, Customer
 
@@ -24,9 +25,16 @@ def products(request):
     return render(request, 'product.html', context)
 
 
+def product(request, product_id):
+    # response = "You're looking at the results of question %s."
+    product_item = Product.objects.get(id=product_id)
+    return JsonResponse({'product': product_item.name})
+
+
 def catgories(request):
-    context = {"category_list": Category.objects.all()}
-    return render(request, 'category.html', context)
+    categories = Category.objects.all()
+    data = serializers.serialize("json", categories)
+    return HttpResponse(data, content_type="application/json")
 
 
 def customers(request):
