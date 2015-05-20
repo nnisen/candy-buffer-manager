@@ -49,19 +49,7 @@ $(document).ready(function(){
   basket = JSON.parse(Cookies.get("basket"));
   
   listProducts($("#page-1-product-list"), $("#page-1-product-sum"));
-  
-  
-/*  // list the products
-  var productlistElem = ;
-  var priceSum = 0.0;  
-  for(var i = 0; i < basket.length; i++){
-    var li = $("<li/>")
-    li.text(basket[i].name+" "+basket[i].price +" €");
-    priceSum = priceSum + basket[i].price;
-    productlistElem.append(li);
-  }
-  $("#page-1-product-sum").text(priceSum);
-  */
+    
   $(".customer-row span").on("click", function(){  
     var customerName = $(this).text();    
     //var customerId = $(this).parent().attr("data-customer-id");
@@ -83,6 +71,9 @@ $(document).ready(function(){
   // page changer buttons
   $(".subpage-submit").on("click", function(){
 
+    var srcpage = $(this).attr("sourcepage");
+    var targetpage = $(this).attr("targetpage");
+    
     // money submit & validation
     if($(this).attr("id") == "page-1-money-submit"){
       if(!validateMoneyInput())
@@ -92,18 +83,16 @@ $(document).ready(function(){
     }
     
     // customer selection
-    if($(this).attr("sourcepage") === "2"){
+    if(srcpage === "2"){
       selectedUser = $("#selected-customer").text();
     }
     
-    if($(this).attr("targetpage") === "3"){
+    if(targetpage === "3"){
       listProducts($("#page-3-product-list"), $("#page-3-product-sum"));
       $("#page-3-input-cash").text(inputCash) 
       $("#page-3-selected-user").text(selectedUser)       
     }
             
-    var srcpage = $(this).attr("sourcepage");
-    var targetpage = $(this).attr("targetpage");        
     changeSubpage(srcpage, targetpage);
-  }); 
+  });
 });
