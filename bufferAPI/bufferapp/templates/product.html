@@ -1,6 +1,6 @@
 {% if product_list %}
 {% for product in product_list %}
-<div data-product-id="{{product.id}}" data-product-name="{{product.name}}" data-product-price="{{product.price}}" class="product col-xs-12 col-sm-6 col-md-4">
+<div data-product-id={{product.id}} data-product-name="{{product.name}}" data-product-price={{product.price}} class="product col-xs-12 col-sm-6 col-md-4">
   <div class="thumbnail">
     <img src="{{product.image}}">
      <div class="caption">
