@@ -6,13 +6,10 @@ function changeSubpage(srcnum, tgtnum){
     
     $("#page-"+srcnum).hide();
     
-    if(tgtnum <= 4){
+    if(tgtnum <= 4 && tgtnum > 0){
       
       $("#page-"+tgtnum).show();        
       
-      if(tgtnum !== 1){
-
-      }      
       activeSubpage = tgtnum;
     }
     else throw new Error("NO PAGE AAARGAAHHH");
