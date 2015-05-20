@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 
 from .models import Product, Category, Customer
 
@@ -24,11 +25,12 @@ def products(request):
     return render(request, 'product.html', context)
 
 
-def catgories(request):
-    context = {"category_list": Category.objects.all()}
-    return render(request, 'category.html', context)
+def categories(request):        
+    return JsonResponse({"category_list": Category.objects.all()})
+    #return render(request, 'category.html', context)
 
 
 def customers(request):
     context = {"customer_list": Customer.objects.all()}
-    return render(request, 'user.html', context)
+    return JsonResponse({"key": "value"})
+    #return render(request, 'user.html', context)
