@@ -18,6 +18,25 @@ overflow-y : hidden;
 }
 */
 
+.basket-product-info {
+   margin-right: 3em;
+   padding-right: 1em;
+}
+
+.basket-product-remover{
+  position:absolute;
+  width:2em;
+  right : 0.5em;
+  padding: 0.1em;
+  font-weight:bold;
+  /*color:#e33;*/
+  border-radius : 0.2em;
+}
+
+.basket-product-remover:hover{  
+  /*color:#f33;*/
+}
+
 li.customer-row {  
   list-style-type: none;  
 }

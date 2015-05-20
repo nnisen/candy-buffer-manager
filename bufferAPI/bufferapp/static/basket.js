@@ -1,12 +1,46 @@
 ﻿var productBasket = [];
 
 function getProductDropdownElement(productInfo){
-    var listelem = $("<li/>");        
+    var listelem = $("<li/>");
     var listlink = $("<a/>");
-    listlink.attr("href","#");         
-    listlink.text("Poista "+productInfo.name+", "+productInfo.price + " e");    
-    $(listelem).append(listlink);    
+    var listremove = $("<span/>");
+    
+    listelem.attr("data-product-id",productInfo.id);
+    
+    listlink.attr("href","#");
+    listlink.text(""+productInfo.name+", "+productInfo.price + " e");
+    listlink.addClass("basket-product-info")
+    
+    
+    listremove.text("X");
+    listremove.addClass("basket-product-remover")
+    listremove.addClass("btn")
+    listremove.addClass("btn-danger")    
+    listremove.click(function(){console.log("clicked!")})
+    
+    $(listlink).append(listremove);
+    $(listelem).append(listlink);
     return listelem;
+}
+
+function getEmptyDropdownElement(id){
+    var listelem = $("<li/>");
+    var listlink = $("<a/>");
+    listlink.attr("id","empty-basket-list-element");
+    listlink.attr("href","#");
+    listlink.text("Ostoskori on tyhjä");
+    $(listelem).append(listlink);
+    return listelem;
+}
+
+function dealWithBasketEmptiness(){
+  var id = "empty-basket-list-element";
+  var idSelector = "#"+id;
+
+  if(!productBasket.length)
+    $("#basket-dropdown .basket-list").append(getEmptyDropdownElement(id));    
+  else if($(idSelector).length)
+    $(idSelector).remove();
 }
 
 function productAddButtonFunction(buttonelem){    
@@ -41,11 +75,14 @@ function productAddButtonFunction(buttonelem){
   };    
   $("#basket-prods").text(productBasket.length);
   $("#basket-sum").text(prodSum.toFixed(2));    
-  $("#basket-dropdown .basket-list").append(getProductDropdownElement(productInfo));
+  $("#basket-dropdown .basket-list").append(getProductDropdownElement(productInfo));  
+  dealWithBasketEmptiness();
 }
 
-$(document).ready(function(){   
-  $(".add-product-to-basket").on("click", function(){
+$(document).ready(function(){     
+  dealWithBasketEmptiness();
+  
+  $(".add-product-to-basket").on("click", function(){    
     productAddButtonFunction(this);    
   });
 });
