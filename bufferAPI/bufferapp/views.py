@@ -29,6 +29,6 @@ def catgories(request):
     return render(request, 'category.html', context)
 
 
-def users(request):
+def customers(request):
     context = {"customer_list": Customer.objects.all()}
     return render(request, 'user.html', context)
