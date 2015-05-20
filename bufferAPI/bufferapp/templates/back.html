@@ -23,8 +23,6 @@
         
         <a id="subpage-back" href="#"><button type="button" class="btn btn-default">< Edellinen</button></a>
         
-        
-        
       </div>
         
       <!--
@@ -47,20 +45,18 @@
       <div class="col-xs-9 subpage" id="page-1">      
       
       <span>Ostoksesi :</span>
-      <ul>
-      <li>Kismet 1 €</li>
-      <li>Kismet 1 €</li>
-      <li>Kismet 1 €</li>      
+      <ul id="page-1-product-list">
+      
       </ul>
       
-      <p>Summa : 3 €</p>
+      <p>Summa : <span id="page-1-product-sum"></span> €</p>
       
       <span>Paljonko maksoit?</span>
-      <input type="text"></input>      
+      <input id="page-1-money-input" type="text"></input>      
       
-        <div sourcepage="1" targetpage="2" class="subpage-submit btn btn-default">
-          Jatka >>
-        </div>
+      <div id="page-1-money-submit" sourcepage="1" targetpage="2" class="subpage-submit btn btn-default">
+        Jatka >>
+      </div>
        <!--  
         <div sourcepage="1" targetpage="3" class="subpage-submit btn btn-default col-xs-12 third-height-2">
           Ei tasaraha
@@ -101,16 +97,13 @@
 
         <p>Yhteenveto :</p>
         
-        <span>Ostoksesi :</span>
-        <ul>
-          <li>Kismet 1 €</li>
-          <li>Kismet 1 €</li>
-          <li>Kismet 1 €</li>      
-        </ul>
+      <span>Ostoksesi :</span>
+      <ul id="page-3-product-list">      
+      </ul>
         
-        <p>Ostosten summa:<span>3 €</span></p>
-        <p>Rahaa annettu:<span></span></p>        
-        <p>Valittu käyttäjä:<span></span></p>
+        <p>Ostosten summa:<span id="page-3-product-sum"></span> €</p>
+        <p>Rahaa annettu:<span id="page-3-input-cash"></span> €</p>        
+        <p>Valittu käyttäjä:<span id="page-3-selected-user"></span></p>
         <p>Rahaa bufferissa nyt:<span></span></p>
         <p>Rahaa bufferissa oston jälkeen:<span></span></p>
         <p><span></span></p>

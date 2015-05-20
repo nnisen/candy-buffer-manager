@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/static/index.css">  
   <script src="https://code.jquery.com/jquery-2.1.3.js"></script>  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>    
+  <script src="/static/js.cookie.js"></script> 
   <script src="/static/index.js"></script>  
   <script src="/static/basket.js"></script>  
     
@@ -34,7 +35,8 @@
       <div class="btn-group" role="group" id="cart">0<span id="cartlink"></span></div>
       -->
       <div class="col-xs-4">
-        <a href="back"><button type="button" class="btn btn-default">Osta tuotteet >></button></a>
+        <!-- back as in "back-page" -->
+        <a href="back"><button id="go-to-buy" type="button" class="btn btn-default">Osta tuotteet >></button></a>
       </div>
     </div>
   </header>
@@ -53,7 +55,7 @@
           <button type="button" class="btn btn-default">kategoria c</button>
         </div>
       </div>
-    </aside>   
+    </aside>
     
     <div id="productbox" class="col-xs-9">
       <!--
