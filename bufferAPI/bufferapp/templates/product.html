@@ -2,14 +2,14 @@
 {% for product in product_list %}
 <div data-product-id={{product.id}} data-product-name="{{product.name}}" data-product-price={{product.price}} class="product col-xs-12 col-sm-6 col-md-4">
   <div class="thumbnail">
-    <img src="{{product.image}}">
+    <img src="{{MEDIA_URL}}{{product.image}}">
      <div class="caption">
        <span class="col-sm-6">
        {{product.name}}
        </span>
        <span class="float-right col-sm-6">
        {{product.price}} e
-       </span>            
+       </span>
        <p><a href="#" class="add-product-to-basket btn btn-primary" role="button">Lis&auml;&auml;</a></p>
     </div>
   </div>
