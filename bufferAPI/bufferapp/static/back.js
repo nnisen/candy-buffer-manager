@@ -1,7 +1,8 @@
 ﻿var activeSubpage = 1;
 var basket;
 var inputCash;
-var selectedUser;
+var activeCustomer;
+//var customers = [];
 
 function changeSubpage(srcnum, tgtnum){
     
@@ -12,6 +13,14 @@ function changeSubpage(srcnum, tgtnum){
       activeSubpage = tgtnum;
     }
     else throw new Error("NO PAGE AAARGHHH");
+    
+    if(activeSubpage === 1){
+      $("#subpage-tofront").css("display","block");
+      $("#subpage-back").css("display","none");
+    }else{
+      $("#subpage-tofront").css("display","none");
+      $("#subpage-back").css("display","block");
+    }
 };
 
 // two functions: checks & returns validity, shows invalidity indicator
@@ -29,6 +38,68 @@ function validateMoneyInput(){
   }  
   input.setCustomValidity("");
   return true;
+}
+
+function listCustomers(parentElem){   
+  var customers = []; // this could also be global
+  var onHoldElem = $("<span/>");
+  onHoldElem.text("Ladataan ...");   
+  parentElem.append(onHoldElem);
+   
+  var response = $.get("/customers").success(function(){     
+    console.log(response.responseText);     
+    var json = JSON.parse(response.responseText);
+    
+    for(var i = 0; i < json.length; i++){
+      customers.push({
+        "id":json[i].pk,
+        "name":json[i].fields.username,
+        "balance":json[i].fields.balance       
+      });
+       
+      // do the HTML stuff while we are looping...
+     
+      var listElem = $("<li/>");
+      listElem.addClass("customer-row");
+      listElem.attr("data-customer-id",customers[i].id);
+      
+      var listNameSpan = $("<span/>");
+      listNameSpan.addClass("customer-name");
+      listNameSpan.text(customers[i].name);
+      
+      var listBalanceSpan = $("<span/>");
+      listBalanceSpan.addClass("customer-balance");
+      listBalanceSpan.text("   "+customers[i].balance);
+      
+      listElem.append(listNameSpan);
+      listElem.append(listBalanceSpan);
+      parentElem.append(listElem);
+    };     
+    console.log("CUSTOMERS");
+    console.log(customers);
+    onHoldElem.remove();
+     
+    // customer list magic
+    $(".customer-row").on("click", function(){  
+      console.log("ROW CLICK");
+      console.log(this);
+      var customerName = $(this).find(".customer-name").text().trim();
+      var customerBalance = $(this).find(".customer-balance").text().trim();
+      var customerId = $(this).attr("data-customer-id");
+      $("#page-2-customer-list > li").removeClass("selected-customer");
+      $(this).addClass("selected-customer");
+      
+      activeCustomer = {
+        "id":parseInt(customerId),
+        "name":customerName,
+        "balance":parseFloat(customerBalance)
+      };
+      
+      $("#selected-customer").text(activeCustomer.name);
+    });
+   }).fail(function(){console.log("FAIL")});
+   
+   console.log("listCustomers");
 }
 
 function listProducts(parentElem, sumTargetElem){
@@ -50,13 +121,6 @@ $(document).ready(function(){
   
   listProducts($("#page-1-product-list"), $("#page-1-product-sum"));
     
-  $(".customer-row span").on("click", function(){  
-    var customerName = $(this).text();    
-    //var customerId = $(this).parent().attr("data-customer-id");
-    $("#customer-selection-list > * > *").removeClass("selected-customer");
-    $(this).addClass("selected-customer");    
-    $("#selected-customer").text(customerName);    
-  });
   
   $("#subpage-back").on("click", function(){
     if(activeSubpage > 1)
@@ -71,8 +135,8 @@ $(document).ready(function(){
   // page changer buttons
   $(".subpage-submit").on("click", function(){
 
-    var srcpage = $(this).attr("sourcepage");
-    var targetpage = $(this).attr("targetpage");
+    var srcpage = parseInt($(this).attr("sourcepage"));
+    var targetpage = parseInt($(this).attr("targetpage"));
     
     // money submit & validation
     if($(this).attr("id") == "page-1-money-submit"){
@@ -82,17 +146,51 @@ $(document).ready(function(){
       inputCash = parseFloat($("#page-1-money-input").val());
     }
     
-    // customer selection
-    if(srcpage === "2"){
-      selectedUser = $("#selected-customer").text();
+    // save customer selection
+    if(srcpage === 2){
+      if(!activeCustomer)
+        return;
+        //selectedUser = $("#selected-customer").text();
     }
     
-    if(targetpage === "3"){
-      listProducts($("#page-3-product-list"), $("#page-3-product-sum"));
-      $("#page-3-input-cash").text(inputCash) 
-      $("#page-3-selected-user").text(selectedUser)       
+    if(targetpage === 2){
+      listCustomers($("#page-2-customer-list"));
     }
-            
+    
+    // populate data displays
+    if(targetpage === 3){
+      listProducts($("#page-3-product-list"), $("#page-3-product-sum"));
+      $("#page-3-input-cash").text(inputCash);
+      $("#page-3-customer-name").text(activeCustomer.name);
+      $("#page-3-customer-balance").text(activeCustomer.balance);      
+      var priceSum = parseFloat($("#page-3-product-sum").text());
+      
+      console.log("MONIES");
+      console.log(activeCustomer.balance);
+      console.log(inputCash);
+      console.log(priceSum);
+      
+      var finalBalance = activeCustomer.balance + inputCash - priceSum;
+      
+      $("#page-3-final-balance").text(finalBalance);      
+    }
+    
+    if(sourcepage === 3 && targetpage === 4){
+      var parent = $(this).find(".summary-parent");
+      var prefix = "page-3-";
+      
+      var buyingMessageObject = {
+        
+      };
+      /*
+      id="product-sum"
+      id="input-cash"
+      id="customer-name"
+      id="customer-balance"
+      id="final-balance"
+      */
+    }
+    
     changeSubpage(srcpage, targetpage);
   });
 });

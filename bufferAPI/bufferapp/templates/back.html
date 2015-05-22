@@ -15,19 +15,11 @@
   <header class="green">    
     <div class="btn-group navbuttons btn-group-justified" role="group">
       <div class="btn-group" role="group">
-        <a href="/"><button type="button" class="btn btn-default"><< Etusivulle</button></a>
-          
-        <!-- 
-        <a href="index.html"><button type="button" class="btn btn-default">< Edellinen</button></a>
-        -->
-        
-        <a id="subpage-back" href="#"><button type="button" class="btn btn-default">< Edellinen</button></a>
+
+        <a href="/" id="subpage-tofront"><button type="button" class="btn btn-default"><< Etusivulle</button></a>        
+        <a href="#" id="subpage-back" style="display:none"><button type="button" class="btn btn-default">< Edellinen</button></a>
         
       </div>
-        
-      <!--
-      <div class="btn-group" role="group" id="cart2"> 6 </div>
-      -->
       
       <div class="btn-group" role="group">
         
@@ -71,8 +63,9 @@
       <div class="col-xs-9" id="page-2" style="display:none">
 
         <span>Kuka olet?</span>
-        <ul id="customer-selection-list">
-          <li class="customer-row" data-customer-id=""><span>Aapo</span></li>
+        <ul id="page-2-customer-list">
+<!--         
+         <li class="customer-row" data-customer-id=""><span>Aapo</span></li>
           <li class="customer-row" data-customer-id=""><span>Petteri</span></li>
           <li class="customer-row" data-customer-id=""><span>Jaska</span></li>
           <li class="customer-row" data-customer-id=""><span>Liisa</span></li>
@@ -80,7 +73,8 @@
           <li class="customer-row" data-customer-id=""><span>Simo</span></li>
           <li class="customer-row" data-customer-id=""><span>Hilla</span></li>
           <li class="customer-row" data-customer-id=""><span>Dmitri</span></li>
-        </ul>
+-->    
+       </ul>
         
         <p>
         <span>Valitsemasi käyttäjä : </span>
@@ -95,28 +89,29 @@
       
       <div class="col-xs-9" id="page-3" style="display:none">
 
-        <p>Yhteenveto :</p>
+        <h3>Yhteenveto</h3>
         
       <span>Ostoksesi :</span>
       <ul id="page-3-product-list">      
       </ul>
-        
-        <p>Ostosten summa:<span id="page-3-product-sum"></span> €</p>
-        <p>Rahaa annettu:<span id="page-3-input-cash"></span> €</p>        
-        <p>Valittu käyttäjä:<span id="page-3-selected-user"></span></p>
-        <p>Rahaa bufferissa nyt:<span id="page-3-buffer-before"></span></p>
-        <p>Rahaa bufferissa oston jälkeen:<span id="page-3-buffer-after"></span></p>
-        <p><span></span></p>
-        
-        <div sourcepage="3" targetpage="4" class="subpage-submit btn btn-default">
-          OSTA
+        <div class="summary-parent">
+          <p>Ostosten summa:                  <span id="page-3-product-sum"></span> €</p>
+          <p>Käteinen:                        <span id="page-3-input-cash"></span> €</p>        
+          <p>Valittu käyttäjä:                <span id="page-3-customer-name"></span></p>
+          <p>Rahaa bufferissa nyt:            <span id="page-3-customer-balance"></span> €</p>
+          <p>Rahaa bufferissa oston jälkeen:  <span id="page-3-final-balance"></span> €</p>
+          <p>&nbsp;</p>
+          <div sourcepage="3" targetpage="4" class="subpage-submit btn btn-default">
+            OSTA
+          </div>
         </div>
       
       </div>
       
       <div class="col-xs-9" id="page-4" style="display:none">
         <p>KIITOS</p>
-        <p>palaa takaisin etuivulle</p>
+        <a href="/"><button type="button" class="btn btn-default"><< Etusivulle</button></a>
+        <!--<p>palaa takaisin etusivulle</p>-->
       </div>
     
     <!--</div>-->
