@@ -42,20 +42,20 @@ overflow-y : hidden;
   /*color:#f33;*/
 }
 
-li.customer-row {  
+li {
   list-style-type: none;  
 }
 
-li.customer-row span{
+li.customer-row{
   padding : 0.2em;
   border-radius : 0.2em;  
 }
 
-li.customer-row span.selected-customer{
+li.customer-row.selected-customer{
   background-color : #99f;
 }
 
-li.customer-row span:hover {  
+li.customer-row:hover {  
   background-color : #99f;
   cursor : pointer;
 }
