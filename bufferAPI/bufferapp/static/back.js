@@ -196,18 +196,30 @@ $(document).ready(function(){
       
       var buyingMessageObject = {
         "customerId" : ""+activeCustomer.id,
-        "sum": ""+sum,
-        "money": ""+inputCash,
-        ///"products":JSON.stringify(prodIdArr)
+        "sum"        : ""+sum,
+        "money"      : ""+inputCash,
+        "products"   : JSON.stringify(prodIdArr)
       };
       
-      $.post("/transactions", buyingMessageObject)
-        .success(function(){
+      $.ajax({      
+        url : "/transactions", 
+        type : "POST",
+        data: JSON.stringify(buyingMessageObject),
+        contentType : "application/json"
+      }).success(function(){
         $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");
       }).fail(function(){
         $("#page-4-success-confirmation").text("Tapahtui virhe.");
       });
       
+      /*
+      $.post("/transactions", {"json":JSON.stringify(buyingMessageObject)})
+        .success(function(){
+        $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");
+      }).fail(function(){
+        $("#page-4-success-confirmation").text("Tapahtui virhe.");
+      });
+      */
       /*
       id="product-sum"
       id="input-cash"

@@ -58,6 +58,9 @@ def sales(request):
 def transactions(request):
     if request.method == 'POST':
         print(request.body)
+        print(request.body.decode('utf-8'))
         json_data = json.loads(request.body.decode('utf-8'))
+        print('still here 1')
         saveTransactionPost(json_data)
+        print('still here 2')
     return HttpResponse('Done')
