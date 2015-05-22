@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-
-from .models import Product, Category, Customer
+from django.views.decorators.csrf import csrf_exempt
+import json
+from .models import Product, Category, Customer, Sale
+from .transactionHelper import *
 
 
 # test page
@@ -42,3 +44,20 @@ def customers(request):
     customers = Customer.objects.all()
     data = serializers.serialize("json", customers)
     return HttpResponse(data, content_type="application/json")
+
+
+@csrf_exempt
+def sales(request):
+    return HttpResponse('lol')
+    # sales = Sale.objects.all()
+    # data = serializers.serialize("json", sales)
+    # return HttpResponse(data, content_type="application/json")
+
+
+@csrf_exempt
+def transactions(request):
+    if request.method == 'POST':
+        print(request.body)
+        json_data = json.loads(request.body.decode('utf-8'))
+        saveTransactionPost(json_data)
+    return HttpResponse('Done')

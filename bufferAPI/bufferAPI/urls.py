@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     url(r'^categories$', 'bufferapp.views.catgories'),
 
     url(r'^customers$', 'bufferapp.views.customers'),
+    url(r'^sales$', 'bufferapp.views.sales'),
+    url(r'^transactions$', 'bufferapp.views.transactions'),
 
     url(r'^bufferapp/', include('bufferapp.urls')),
     url(r'^admin/', include(admin.site.urls)),

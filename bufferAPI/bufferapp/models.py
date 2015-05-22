@@ -32,10 +32,13 @@ class Product(models.Model):
 
 class Transaction(models.Model):
     timestamp = models.DateTimeField(
-        auto_now=True,
         auto_now_add=True
     )
+    timestamp.editable = False
     customer = models.ForeignKey(Customer)
+
+    def __str__(self):
+        return self.customer.username
 
 
 class Sale(models.Model):
