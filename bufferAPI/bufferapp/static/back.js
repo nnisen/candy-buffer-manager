@@ -165,7 +165,7 @@ $(document).ready(function(){
       $("#page-3-customer-balance").text(activeCustomer.balance);      
       var priceSum = parseFloat($("#page-3-product-sum").text());
       
-      console.log("MONIES");
+      console.log("DA MONIES");
       console.log(activeCustomer.balance);
       console.log(inputCash);
       console.log(priceSum);
@@ -179,9 +179,35 @@ $(document).ready(function(){
       var parent = $(this).find(".summary-parent");
       var prefix = "page-3-";
       
+      //the "schema":
+      /*{
+      "customerId":1,
+      "sum":1.5, // sum of prod prices
+      "money":0, // input cash 
+      "products":[11,12] // prod id array
+      }
+      */
+      var sum = 0;
+      var prodIdArr = [];     
+      for(var i = 0; i < basket.length; i++){
+        prodIdArr.push(basket[i].id);
+        sum = sum + basket[i].price;
+      }
+      
       var buyingMessageObject = {
-        
+        "customerId" : ""+activeCustomer.id,
+        "sum": ""+sum,
+        "money": ""+inputCash,
+        ///"products":JSON.stringify(prodIdArr)
       };
+      
+      $.post("/transactions", buyingMessageObject)
+        .success(function(){
+        $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");
+      }).fail(function(){
+        $("#page-4-success-confirmation").text("Tapahtui virhe.");
+      });
+      
       /*
       id="product-sum"
       id="input-cash"

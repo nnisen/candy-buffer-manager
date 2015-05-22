@@ -2,7 +2,6 @@
 overflow-y : hidden;
 }
 
-
 #page-1 > * {
   /*height : 100%;*/
 }
@@ -18,9 +17,19 @@ overflow-y : hidden;
 }
 */
 
+.product-image-wrapper{
+  
+}
+
+.thumbnail{
+  max-height : 300px;
+  max-width : 300px;  
+  overflow:hidden;
+}
 .productimage {
-  width : 300px;
-  height : 300px;
+  min-height : 100px;
+  max-height : 200px;
+  max-width : 300px;  
 }
 
 .basket-product-info {
@@ -59,8 +68,6 @@ li.customer-row:hover {
   background-color : #99f;
   cursor : pointer;
 }
-
-
 
 header {
   height : 5%;
