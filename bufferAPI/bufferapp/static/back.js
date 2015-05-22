@@ -135,7 +135,7 @@ $(document).ready(function(){
   // page changer buttons
   $(".subpage-submit").on("click", function(){
 
-    var srcpage = parseInt($(this).attr("sourcepage"));
+    var sourcepage = parseInt($(this).attr("sourcepage"));
     var targetpage = parseInt($(this).attr("targetpage"));
     
     // money submit & validation
@@ -147,7 +147,7 @@ $(document).ready(function(){
     }
     
     // save customer selection
-    if(srcpage === 2){
+    if(sourcepage === 2){
       if(!activeCustomer)
         return;
         //selectedUser = $("#selected-customer").text();
@@ -191,6 +191,6 @@ $(document).ready(function(){
       */
     }
     
-    changeSubpage(srcpage, targetpage);
+    changeSubpage(sourcepage, targetpage);
   });
 });
