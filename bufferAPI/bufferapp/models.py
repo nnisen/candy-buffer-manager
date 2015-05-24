@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import admin
+from decimal import Decimal
 
 # Create your models here.
 
@@ -7,6 +8,16 @@ from django.contrib import admin
 class Customer(models.Model):
     username = models.CharField(max_length=200, unique=True)
     balance = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def make_payment(self, price):
+        converted_price = Decimal(price)
+        self.balance -= converted_price
+        self.save()
+
+    def make_deposit(self, money):
+        converted = Decimal(money)
+        self.balance += converted
+        self.save()
 
     def __str__(self):
         return self.username
