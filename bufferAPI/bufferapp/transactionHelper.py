@@ -12,22 +12,27 @@ def saveTransactionPost(json_data):
     except KeyError:
         return HttpResponseBadRequest("missing field in json")
 
-    c = Customer.objects.get(id=customer_id)
-    new_transaction = Transaction(customer=c)
-    new_transaction.save()
-    c.make_deposit(input_money)
-    c.make_payment(purchase_sum)
+    try:
+        c = Customer.objects.get(id=customer_id)
+        new_transaction = Transaction(customer=c)
+        new_transaction.save()
+        c.make_deposit(input_money)
+        c.make_payment(purchase_sum)
 
-    for product_id in product_list:
-        saleToDb(product_id, new_transaction)
-
+        for product_id in product_list:
+            saleToDb(product_id, new_transaction)
+    except Product.DoesNotExist:
+        return HttpResponseBadRequest("wrong prduct id")
+    except Customer.DoesNotExist:
+        return HttpResponseBadRequest("wrong customer id")
 
 def saleToDb(product_id, transaction):
     product = Product.objects.get(id=product_id)
     new_sale = Sale(product=product, price_at_sale_time=product.price)
     new_sale.transaction = transaction
     new_sale.save()
-    return new_sale
+    product.make_sale()
+
 
 
 def makeDeposit(json_data):
@@ -42,3 +47,5 @@ def makeDeposit(json_data):
         customer.make_deposit(input_money)
     except KeyError:
         return HttpResponseBadRequest("missing field in json")
+    except Customer.DoesNotExist:
+        return HttpResponseBadRequest("wrong customer id")
