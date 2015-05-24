@@ -1,21 +1,8 @@
 ﻿body {
-overflow-y : hidden;
+  overflow-y : hidden;
+  font-size : 2em;
 }
 
-#page-1 > * {
-  /*height : 100%;*/
-}
-/*
-#back-maincontainer {
-    display: table;
-    width: 100%;
-    height: 100%;
-}
-#back-maincontainer > *{
-    display:table-row;
-    height:0px; 
-}
-*/
 
 .product-image-wrapper{
   
@@ -137,6 +124,7 @@ footer {
 
 .subpage{
     height: 100%;
+    padding : 3em;
 }
 
 .navbuttons button {

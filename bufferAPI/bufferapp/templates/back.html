@@ -16,7 +16,7 @@
     <div class="btn-group navbuttons btn-group-justified" role="group">
       <div class="btn-group" role="group">
 
-        <a href="/" id="subpage-tofront"><button type="button" class="btn btn-default"><< Etusivulle</button></a>        
+        <a href="/" id="subpage-to-front-page"><button type="button" class="btn btn-default"><< Etusivulle</button></a>        
         <a href="#" id="subpage-back" style="display:none"><button type="button" class="btn btn-default">< Edellinen</button></a>
         
       </div>
@@ -49,31 +49,13 @@
       <div id="page-1-money-submit" sourcepage="1" targetpage="2" class="subpage-submit btn btn-default">
         Jatka >>
       </div>
-       <!--  
-        <div sourcepage="1" targetpage="3" class="subpage-submit btn btn-default col-xs-12 third-height-2">
-          Ei tasaraha
-        </div>
-        
-        <div sourcepage="1" targetpage="4" class="subpage-submit btn btn-default col-xs-12 third-height-3">
-          Käytä bufferia
-        </div>
-       -->
+
       </div>
       
-      <div class="col-xs-9" id="page-2" style="display:none">
+      <div class="col-xs-9 subpage" id="page-2" style="display:none">
 
         <span>Kuka olet?</span>
         <ul id="page-2-customer-list">
-<!--         
-         <li class="customer-row" data-customer-id=""><span>Aapo</span></li>
-          <li class="customer-row" data-customer-id=""><span>Petteri</span></li>
-          <li class="customer-row" data-customer-id=""><span>Jaska</span></li>
-          <li class="customer-row" data-customer-id=""><span>Liisa</span></li>
-          <li class="customer-row" data-customer-id=""><span>Anna-Maija</span></li>
-          <li class="customer-row" data-customer-id=""><span>Simo</span></li>
-          <li class="customer-row" data-customer-id=""><span>Hilla</span></li>
-          <li class="customer-row" data-customer-id=""><span>Dmitri</span></li>
--->    
        </ul>
         
         <p>
@@ -87,20 +69,34 @@
         
       </div>
       
-      <div class="col-xs-9" id="page-3" style="display:none">
+      <div class="col-xs-9 subpage" id="page-3" style="display:none">
 
         <h3>Yhteenveto</h3>
         
       <span>Ostoksesi :</span>
-      <ul id="page-3-product-list">      
+      <ul class="table" id="page-3-product-list">      
       </ul>
         <div class="summary-parent">
+          
+          <table class="table table-striped">
+          <tbody>
+          <tr><td>Ostosten summa:                  </td><td><span id="page-3-product-sum"></span> €</td></tr>
+          <tr><td>Käteinen:                        </td><td><span id="page-3-input-cash"></span> €</td></tr>  
+          <tr><td>Valittu käyttäjä:                </td><td><span id="page-3-customer-name"></span></td></tr>
+          <tr><td>Rahaa bufferissa nyt:            </td><td><span id="page-3-customer-balance"></span> €</td></tr>
+          <tr><td>Rahaa bufferissa oston jälkeen:  </td><td><span id="page-3-final-balance"></span> €</td></tr>
+          </tbody>
+          </table>
+          <p>&nbsp;</p>
+          <!--
           <p>Ostosten summa:                  <span id="page-3-product-sum"></span> €</p>
           <p>Käteinen:                        <span id="page-3-input-cash"></span> €</p>        
           <p>Valittu käyttäjä:                <span id="page-3-customer-name"></span></p>
           <p>Rahaa bufferissa nyt:            <span id="page-3-customer-balance"></span> €</p>
           <p>Rahaa bufferissa oston jälkeen:  <span id="page-3-final-balance"></span> €</p>
           <p>&nbsp;</p>
+          -->          
+          
           <div sourcepage="3" targetpage="4" class="subpage-submit btn btn-default">
             OSTA
           </div>
@@ -108,14 +104,13 @@
       
       </div>
       
-      <div class="col-xs-9" id="page-4" style="display:none">       
+      <div class="col-xs-9 subpage" id="page-4" style="display:none">       
         <p id="page-4-success-confirmation"></p>
         <p id="page-4-success-overview-customer"></p>
         <p id="page-4-success-overview-balance"></p>
         <a href="/"><button type="button" class="btn btn-default"><< Etusivulle</button></a>
       </div>
     
-    <!--</div>-->
   </div>
    
   <footer>
