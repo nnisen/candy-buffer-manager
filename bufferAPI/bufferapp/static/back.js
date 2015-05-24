@@ -2,10 +2,10 @@
 var basket;
 var inputCash;
 var activeCustomer;
-var spareMeClass = "spare-me-please" // for list emptying
+var spareMeClass = "spare-me-please" // to skip when deleting
 
-function redCheck(value, elem){
-  
+// "validation" check: colors elem text red on a subzero value
+function redCheck(value, elem){  
   console.log("redCheck")
   console.log(value)
   console.log(elem)
@@ -46,7 +46,7 @@ function changeSubpage(srcnum, tgtnum){
     }
 };
 
-// two purposes: checks & returns validity, shows invalidity indicator
+// checks & returns validity, also shows invalidity indicator
 function validateMoneyInput(){
   var input = document.getElementById("page-1-money-input");
   var money = $(input).val();
@@ -101,24 +101,6 @@ function listCustomers(parentElem){
       listElem.append(listNameSpan);
       listElem.append(listBalanceSpan);
       parentElem.append(listElem);
-      
-      /*
-      var listElem = $("<li/>");
-      listElem.addClass("customer-row");
-      listElem.attr("data-customer-id",customers[i].id);
-      
-      var listNameSpan = $("<span/>");
-      listNameSpan.addClass("customer-name");
-      listNameSpan.text(customers[i].name);
-      
-      var listBalanceSpan = $("<span/>");
-      listBalanceSpan.addClass("customer-balance");
-      listBalanceSpan.text("   "+customers[i].balance);
-      
-      listElem.append(listNameSpan);
-      listElem.append(listBalanceSpan);
-      parentElem.append(listElem);
-      */
     };         
     
     onHoldElem.remove();
@@ -278,7 +260,8 @@ $(document).ready(function(){
       var prefix = "page-3-";
       
       //the "schema":
-      /*{
+      /*
+      {
       "customerId":1,
       "sum":1.5, // sum of prod prices
       "money":0, // input cash 
@@ -298,7 +281,7 @@ $(document).ready(function(){
         "customerId" : ""+activeCustomer.id,
         "sum"        : ""+sum.toFixed(2),
         "money"      : ""+inputCash.toFixed(2),
-        "products"   : JSON.stringify(prodIdArr)
+        "products"   : prodIdArr
       };
       
       

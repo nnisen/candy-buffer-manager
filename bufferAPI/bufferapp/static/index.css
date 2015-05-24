@@ -1,20 +1,23 @@
 ﻿body {
-  overflow-y : hidden;
-  font-size : 2em;
+  overflow-y : auto;
+  overflow-x : hidden;
+  font-size : 2em !important;
+  min-width : 900px;
 }
 
-
-.product-image-wrapper{
-  
+.prod-img-wrapper{  
 }
 
 .bold{
   font-weight : bold;
 }
 
+.product{
+}
+
 .thumbnail{
+  min-height : 300px;
   max-height : 300px;
-  max-width : 300px;  
   overflow:hidden;
 }
 .productimage {
@@ -45,17 +48,11 @@
 li {
   list-style-type: none;  
 }
-/*
-li.customer-row{
-  padding : 0.2em;
-  border-radius : 0.2em;  
-}
-*/
+
 .customer-row#selected-customer{
   background-color : #99f;
 }
 .customer-row:hover {  
-  /*background-color : #99f;*/
   cursor : pointer;
 }
 
@@ -67,49 +64,38 @@ header {
   height : 95%;
 }
 
-.third-height-1 {   
-  height : 30%;
-  top : 0px;
-}
-.third-height-2 {  
-  height : 30%;
-  /*top : 33%;*/
-}
-.third-height-3 {  
-  height : 30%;
-  /*top : 66%;*/
+#maincontainer {
+  overflow: visible;
+
 }
 
-
-aside {
-  position : absolute;
-  display: inline-block;
-  float:left;
-  padding: 2em 0.5em;
-  height: 100%;
-  /*min-height: 600px;*/
+#product-box{
+  overflow: visible;
 }
 
-
-/*#cartlink {
-  position : absolute;
-  width : 50px;
-  height : 50px;
-  cursor: pointer;
-  z-index : 9003;
+aside#aside {  
+  position : relative;
+  top: 0px;
+  bottom: 0px;
+  padding : 0;
+  display: inline-block;  
+  float: left;    
 }
 
-#cart{ 
-  margin-left : 0px;
-  background: url("http://static.freepik.com/free-photo/shopping-cart-2_318-9228.jpg")
-  no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);  
-}*/
+.aside-inner {  
+  padding-top: 2em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  width : 100%;
+  height: 100%;  
+}
 
 footer {
   position : absolute;
   display: inline-block;
   bottom : 0px;  
 }
+
 
 #maincontainer, #maincontainer-back {
   position : absolute;
@@ -134,14 +120,27 @@ footer {
 margin : 0.5em;
 }
 
+.category-button {    
+  margin : 1em 0.5em;
+  padding : 1em 0.5em;
+  /*border-radius : 1em;*/
+  border-style : inset;
+  border-width : 5px;
+  transition: all 0.2s ease 0s;
+}
+
+.category-button.selected {
+  background: #79b654
+}
+
+.category-button:hover {
+  background: #599634
+}
+
 .green {
 	background-color: #79b654;
 }
 
 .lightgreen {
 	background-color: #99d674;
-}
-
-header {
-
 }
