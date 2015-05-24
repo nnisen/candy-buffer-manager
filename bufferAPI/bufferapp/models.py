@@ -79,3 +79,11 @@ class SaleInline(admin.TabularInline):
 
 class TransactionAdmin(admin.ModelAdmin):
     inlines = [SaleInline, ]
+
+
+class ProductInline(admin.TabularInline):
+    model = Product.categories.through
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    inlines = [ProductInline, ]
