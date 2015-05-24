@@ -65,12 +65,12 @@ def transactions(request):
     if request.method == 'GET':
         return HttpResponse('BadRequest')
     if request.method == 'POST':
-        #print(request.body)
-        #print(request.body.decode('utf-8'))
         json_data = json.loads(request.body.decode('utf-8'))
-        #print('still here 1')
         #transactionhelper
-        saveTransactionPost(json_data)
+        #return error if detected
+        value = saveTransactionPost(json_data)
+        if value:
+            return value
         #print('still here 2')
     return HttpResponse('Done')
 
@@ -80,7 +80,10 @@ def deposit(request):
     if request.method == 'POST':
         json_data = json.loads(request.body.decode('utf-8'))
         #transactionhelper
-        makeDeposit(json_data)
-
+        #return error if detected
+        value = makeDeposit(json_data)
+        if value:
+            return value
 
     return HttpResponse('Done')
+

@@ -1,13 +1,16 @@
 from .models import Product, Category, Customer, Sale, Transaction
-
+from django.http import HttpResponseBadRequest, HttpResponse
 
 def saveTransactionPost(json_data):
     print(json_data)
     #get user
-    input_money = json_data['money']
-    customer_id = json_data['customerId']
-    purchase_sum = json_data['sum']
-    product_list = json_data['products']
+    try:
+        input_money = json_data['money']
+        customer_id = json_data['customerId']
+        purchase_sum = json_data['sum']
+        product_list = json_data['products']
+    except KeyError:
+        return HttpResponseBadRequest("missing field in json")
 
     c = Customer.objects.get(id=customer_id)
     new_transaction = Transaction(customer=c)
@@ -29,10 +32,13 @@ def saleToDb(product_id, transaction):
 
 def makeDeposit(json_data):
     #get user
-    customer_id = json_data['customerId']
-    customer = Customer.objects.get(id=customer_id)
+    try:
+        customer_id = json_data['customerId']
+        customer = Customer.objects.get(id=customer_id)
 
-    #get money_amount
-    input_money = json_data['money']
-    #save
-    customer.make_deposit(input_money)
+        #get money_amount
+        input_money = json_data['money']
+        #save
+        customer.make_deposit(input_money)
+    except KeyError:
+        return HttpResponseBadRequest("missing field in json")
