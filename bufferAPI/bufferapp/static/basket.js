@@ -41,7 +41,7 @@ function updateBasket(){
     prodSum += productBasket[i].price;
   };    
   $("#basket-prods").text(productBasket.length);
-  $("#basket-sum").text(prodSum.toFixed(2));    
+  $("#basket-sum").text(prodSum.toFixed(2));
 
   // deals with empty basket ui
   var cls = "empty-basket-list-element";

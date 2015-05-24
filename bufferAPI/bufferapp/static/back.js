@@ -4,26 +4,49 @@ var inputCash;
 var activeCustomer;
 //var customers = [];
 
+function redCheck(value, elem){
+  
+  console.log("redCheck")
+  console.log(value)
+  console.log(elem)
+  
+  var origAttrName = "data-original-color";
+  var badColor = "red";
+  
+  if(elem.css("color") !== badColor)
+    elem[origAttrName] = elem.css("color");
+            
+  if(parseFloat(value) < 0){ 
+    elem.css("color",badColor);
+  }else{
+    elem.css("color",elem[origAttrName]);
+  }
+}
+
 function changeSubpage(srcnum, tgtnum){
     
     $("#page-"+srcnum).hide();
     
+    // subpages are numbered 1 to 4
     if(tgtnum <= 4 && tgtnum > 0){     
-      $("#page-"+tgtnum).show();              
+      $("#page-"+tgtnum).show();
       activeSubpage = tgtnum;
     }
-    else throw new Error("NO PAGE AAARGHHH");
+    else throw new Error("NO SUCH SUBPAGE AAARGHHH");
     
-    if(activeSubpage === 1){
-      $("#subpage-tofront").css("display","block");
-      $("#subpage-back").css("display","none");
+    var frontPageButton = $("#subpage-to-front-page");
+    var backButton = $("#subpage-back");
+    
+    if(activeSubpage === 1 || activeSubpage === 4){
+      frontPageButton.css("display","block");
+      backButton.css("display","none");
     }else{
-      $("#subpage-tofront").css("display","none");
-      $("#subpage-back").css("display","block");
+      frontPageButton.css("display","none");
+      backButton.css("display","block");
     }
 };
 
-// two functions: checks & returns validity, shows invalidity indicator
+// two purposes: checks & returns validity, shows invalidity indicator
 function validateMoneyInput(){
   var input = document.getElementById("page-1-money-input");
   var money = $(input).val();
@@ -40,25 +63,29 @@ function validateMoneyInput(){
   return true;
 }
 
+// gets customer list from DB
 function listCustomers(parentElem){   
-  var customers = []; // this could also be global
+  var customers = [];
+  
+  if(parentElem.children().length)
+    parentElem.empty(); // dump any content to not list twice
+  
   var onHoldElem = $("<span/>");
   onHoldElem.text("Ladataan ...");   
   parentElem.append(onHoldElem);
    
   var response = $.get("/customers").success(function(){     
-    console.log(response.responseText);     
+    //console.log(response.responseText);     
     var json = JSON.parse(response.responseText);
     
+    // populate customer data list & build list in HTML  
     for(var i = 0; i < json.length; i++){
       customers.push({
         "id":json[i].pk,
         "name":json[i].fields.username,
-        "balance":json[i].fields.balance       
+        "balance":parseFloat(json[i].fields.balance).toFixed(2)
       });
        
-      // do the HTML stuff while we are looping...
-     
       var listElem = $("<li/>");
       listElem.addClass("customer-row");
       listElem.attr("data-customer-id",customers[i].id);
@@ -74,35 +101,42 @@ function listCustomers(parentElem){
       listElem.append(listNameSpan);
       listElem.append(listBalanceSpan);
       parentElem.append(listElem);
-    };     
-    console.log("CUSTOMERS");
-    console.log(customers);
+    };         
+    
     onHoldElem.remove();
      
-    // customer list magic
+    // customer list on-click magic
     $(".customer-row").on("click", function(){  
-      console.log("ROW CLICK");
-      console.log(this);
+     
+     // console.log("ROW CLICK");
+      //console.log(this);
       var customerName = $(this).find(".customer-name").text().trim();
       var customerBalance = $(this).find(".customer-balance").text().trim();
       var customerId = $(this).attr("data-customer-id");
       $("#page-2-customer-list > li").removeClass("selected-customer");
       $(this).addClass("selected-customer");
-      
+     
+      // save to the global activeCustomer object     
       activeCustomer = {
         "id":parseInt(customerId),
         "name":customerName,
-        "balance":parseFloat(customerBalance)
+        "balance":parseFloat(customerBalance).toFixed(2)
       };
       
       $("#selected-customer").text(activeCustomer.name);
     });
-   }).fail(function(){console.log("FAIL")});
+   }).fail(function(){
+     onHoldElem.text("Tapahtui virhe.");
+   });
    
-   console.log("listCustomers");
+   //console.log("listCustomers");
 }
 
 function listProducts(parentElem, sumTargetElem){
+   
+  // dump any old content to not list twice
+  if(parentElem.children().length)
+    parentElem.empty(); 
    
   var priceSum = 0.0;  
   for(var i = 0; i < basket.length; i++){
@@ -112,7 +146,7 @@ function listProducts(parentElem, sumTargetElem){
     parentElem.append(li);
   }
   console.log(priceSum);
-  sumTargetElem.text(priceSum);
+  sumTargetElem.text(priceSum.toFixed(2));
 }
 
 function reset(){
@@ -154,8 +188,8 @@ $(document).ready(function(){
     
     // save customer selection
     if(sourcepage === 2){
-      if(!activeCustomer)
-        return;
+      //if(!activeCustomer)
+        //return;
         //selectedUser = $("#selected-customer").text();
     }
     
@@ -166,19 +200,30 @@ $(document).ready(function(){
     // populate data displays
     if(targetpage === 3){
       listProducts($("#page-3-product-list"), $("#page-3-product-sum"));
-      $("#page-3-input-cash").text(inputCash);
+      $("#page-3-input-cash").text(inputCash.toFixed(2));
       $("#page-3-customer-name").text(activeCustomer.name);
-      $("#page-3-customer-balance").text(activeCustomer.balance);      
-      var priceSum = parseFloat($("#page-3-product-sum").text());
       
+      $("#page-3-customer-balance").text(activeCustomer.balance);
+      
+      var priceSum = $("#page-3-product-sum").text().trim();
+      
+      var finalBalance = (
+          parseFloat(activeCustomer.balance) 
+        + parseFloat(inputCash)
+        - parseFloat(priceSum)
+      );
+      
+      /*
       console.log("DA MONIES");
       console.log(activeCustomer.balance);
       console.log(inputCash);
       console.log(priceSum);
+      console.log(finalBalance);      
+      */
       
-      var finalBalance = activeCustomer.balance + inputCash - priceSum;
-      
-      $("#page-3-final-balance").text(finalBalance);      
+      var finalBalanceTargetElem = $("#page-3-final-balance");
+      redCheck(finalBalance, finalBalanceTargetElem);      
+      finalBalanceTargetElem.text(finalBalance.toFixed(2));      
     }
     
     if(sourcepage === 3 && targetpage === 4){
@@ -193,6 +238,8 @@ $(document).ready(function(){
       "products":[11,12] // prod id array
       }
       */
+      
+      // build product id array, calculate price sum
       var sum = 0;
       var prodIdArr = [];     
       for(var i = 0; i < basket.length; i++){
@@ -202,31 +249,35 @@ $(document).ready(function(){
       
       var buyingMessageObject = {
         "customerId" : ""+activeCustomer.id,
-        "sum"        : ""+sum,
-        "money"      : ""+inputCash,
+        "sum"        : ""+sum.toFixed(2),
+        "money"      : ""+inputCash.toFixed(2),
         "products"   : JSON.stringify(prodIdArr)
       };
       
-      // posting the transaction re-gets the customer from the db for the confirmation
+      
       $.ajax({      
         url : "/transactions", 
         type : "POST",
         data: JSON.stringify(buyingMessageObject),
         contentType : "application/json"
       }).success(function(){      
+      
+          // transaction success gets the customer from the db for the confirmation
           var customerJSON = $.get("/customer?customer_id="+buyingMessageObject.customerId).success(function(){
           
           console.log("customerJSON");
           console.log(customerJSON);
-          
-          //var customer = JSON.parse(customerJSON);
+                    
           var customer = customerJSON.responseJSON[0];
           var name = customer.fields.username;
           var balance = customer.fields.balance;
           
           $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");          
           $("#page-4-success-overview-customer").text("Käyttäjä "+name);
-          $("#page-4-success-overview-balance").text("Bufferissa rahaa jäljellä "+balance + " €");
+          
+          var balanceTarget = $("#page-4-success-overview-balance");          
+          redCheck(balance, balanceTarget);          
+          balanceTarget.text("Bufferissa rahaa jäljellä "+parseFloat(balance).toFixed(2) + " €");
           
           reset();
           
@@ -237,14 +288,6 @@ $(document).ready(function(){
         $("#page-4-success-confirmation").text("Tapahtui virhe.");
       });
       
-      /*
-      $.post("/transactions", {"json":JSON.stringify(buyingMessageObject)})
-        .success(function(){
-        $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");
-      }).fail(function(){
-        $("#page-4-success-confirmation").text("Tapahtui virhe.");
-      });
-      */
       /*
       id="product-sum"
       id="input-cash"
