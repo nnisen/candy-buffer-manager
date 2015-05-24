@@ -38,6 +38,10 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products')
     categories = models.ManyToManyField(Category)
 
+    def make_sale(self):
+        self.inventory += -1
+        self.save()
+
     def __str__(self):
         return self.name
 
