@@ -115,6 +115,12 @@ function listProducts(parentElem, sumTargetElem){
   sumTargetElem.text(priceSum);
 }
 
+function reset(){
+  var basket = null;
+  var inputCash = null;
+  var activeCustomer = null;
+};
+
 $(document).ready(function(){
   
   basket = JSON.parse(Cookies.get("basket"));
@@ -201,13 +207,32 @@ $(document).ready(function(){
         "products"   : JSON.stringify(prodIdArr)
       };
       
+      // posting the transaction re-gets the customer from the db for the confirmation
       $.ajax({      
         url : "/transactions", 
         type : "POST",
         data: JSON.stringify(buyingMessageObject),
         contentType : "application/json"
-      }).success(function(){
-        $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");
+      }).success(function(){      
+          var customerJSON = $.get("/customer?customer_id="+buyingMessageObject.customerId).success(function(){
+          
+          console.log("customerJSON");
+          console.log(customerJSON);
+          
+          //var customer = JSON.parse(customerJSON);
+          var customer = customerJSON.responseJSON[0];
+          var name = customer.fields.username;
+          var balance = customer.fields.balance;
+          
+          $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");          
+          $("#page-4-success-overview-customer").text("Käyttäjä "+name);
+          $("#page-4-success-overview-balance").text("Bufferissa rahaa jäljellä "+balance + " €");
+          
+          reset();
+          
+        }).fail(function(){        
+          $("#page-4-success-confirmation").text("Tapahtui virhe.");
+        });        
       }).fail(function(){
         $("#page-4-success-confirmation").text("Tapahtui virhe.");
       });
