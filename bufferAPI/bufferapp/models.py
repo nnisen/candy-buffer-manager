@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
 
@@ -37,8 +38,16 @@ class Transaction(models.Model):
     timestamp.editable = False
     customer = models.ForeignKey(Customer)
 
+    def get_date_string(self):
+        DATE_FORMAT = "%Y-%m-%d"
+        TIME_FORMAT = "%H:%M:%S"
+
+        if self.timestamp:
+            return self.timestamp.strftime("%s %s" %
+                (DATE_FORMAT, TIME_FORMAT))
+
     def __str__(self):
-        return self.customer.username
+        return "%s, %s" % (self.customer.username, self.get_date_string())
 
 
 class Sale(models.Model):
@@ -50,4 +59,12 @@ class Sale(models.Model):
     transaction = models.ForeignKey(Transaction)
 
     def __str__(self):
-        return self.product.name
+        return self.product.name + ", " + self.transaction.__str__()
+
+
+class SaleInline(admin.TabularInline):
+    model = Sale
+
+
+class TransactionAdmin(admin.ModelAdmin):
+    inlines = [SaleInline, ]

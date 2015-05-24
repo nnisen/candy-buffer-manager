@@ -13,14 +13,17 @@ def saveTransactionPost(json_data):
     c = Customer.objects.get(id=customer_id)
     new_transaction = Transaction(customer=c)
     new_transaction.save()
-    #get timestamp
-    #create Transaction
-    #get products
-    #add sales
+
+    for product_id in product_list:
+        saleToDb(product_id, new_transaction)
 
 def transactionToDb(transaction):
     pass
 
 
-def saleToDb(sale):
-    pass
+def saleToDb(product_id, transaction):
+    product = Product.objects.get(id=product_id)
+    new_sale = Sale(product=product, price_at_sale_time=product.price)
+    new_sale.transaction = transaction
+    new_sale.save()
+    return new_sale
