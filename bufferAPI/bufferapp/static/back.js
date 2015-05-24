@@ -115,6 +115,12 @@ function listProducts(parentElem, sumTargetElem){
   sumTargetElem.text(priceSum);
 }
 
+function reset(){
+  var basket = null;
+  var inputCash = null;
+  var activeCustomer = null;
+};
+
 $(document).ready(function(){
   
   basket = JSON.parse(Cookies.get("basket"));
@@ -165,7 +171,7 @@ $(document).ready(function(){
       $("#page-3-customer-balance").text(activeCustomer.balance);      
       var priceSum = parseFloat($("#page-3-product-sum").text());
       
-      console.log("MONIES");
+      console.log("DA MONIES");
       console.log(activeCustomer.balance);
       console.log(inputCash);
       console.log(priceSum);
@@ -179,9 +185,66 @@ $(document).ready(function(){
       var parent = $(this).find(".summary-parent");
       var prefix = "page-3-";
       
+      //the "schema":
+      /*{
+      "customerId":1,
+      "sum":1.5, // sum of prod prices
+      "money":0, // input cash 
+      "products":[11,12] // prod id array
+      }
+      */
+      var sum = 0;
+      var prodIdArr = [];     
+      for(var i = 0; i < basket.length; i++){
+        prodIdArr.push(basket[i].id);
+        sum = sum + basket[i].price;
+      }
+      
       var buyingMessageObject = {
-        
+        "customerId" : ""+activeCustomer.id,
+        "sum"        : ""+sum,
+        "money"      : ""+inputCash,
+        "products"   : JSON.stringify(prodIdArr)
       };
+      
+      // posting the transaction re-gets the customer from the db for the confirmation
+      $.ajax({      
+        url : "/transactions", 
+        type : "POST",
+        data: JSON.stringify(buyingMessageObject),
+        contentType : "application/json"
+      }).success(function(){      
+          var customerJSON = $.get("/customer?customer_id="+buyingMessageObject.customerId).success(function(){
+          
+          console.log("customerJSON");
+          console.log(customerJSON);
+          
+          //var customer = JSON.parse(customerJSON);
+          var customer = customerJSON.responseJSON[0];
+          var name = customer.fields.username;
+          var balance = customer.fields.balance;
+          
+          $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");          
+          $("#page-4-success-overview-customer").text("Käyttäjä "+name);
+          $("#page-4-success-overview-balance").text("Bufferissa rahaa jäljellä "+balance + " €");
+          
+          reset();
+          
+        }).fail(function(){        
+          $("#page-4-success-confirmation").text("Tapahtui virhe.");
+        });        
+      }).fail(function(){
+        $("#page-4-success-confirmation").text("Tapahtui virhe.");
+      });
+      
+      /*
+      $.post("/transactions", {"json":JSON.stringify(buyingMessageObject)})
+        .success(function(){
+        $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");
+      }).fail(function(){
+        $("#page-4-success-confirmation").text("Tapahtui virhe.");
+      });
+      */
       /*
       id="product-sum"
       id="input-cash"

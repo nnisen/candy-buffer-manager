@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     url(r'^categories$', 'bufferapp.views.catgories'),
 
     url(r'^customers$', 'bufferapp.views.customers'),
+    #url(r'^customer/(?P<customer_id>[0-9]+)/$', 'bufferapp.views.customer'),
+    url(r'^customer$', 'bufferapp.views.customer'),
     url(r'^sales$', 'bufferapp.views.sales'),
     url(r'^transactions$', 'bufferapp.views.transactions'),
 
