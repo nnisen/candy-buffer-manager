@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^customer$', 'bufferapp.views.customer'),
     url(r'^sales$', 'bufferapp.views.sales'),
     url(r'^transactions$', 'bufferapp.views.transactions'),
+    url(r'^deposit$', 'bufferapp.views.deposit'),
 
     url(r'^bufferapp/', include('bufferapp.urls')),
     url(r'^admin/', include(admin.site.urls)),

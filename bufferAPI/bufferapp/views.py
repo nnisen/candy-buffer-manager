@@ -45,6 +45,7 @@ def customer(request):
     data = serializers.serialize("json", [customer])
     return HttpResponse(data, content_type="application/json")
 
+
 def customers(request):
     customers = Customer.objects.all()
     data = serializers.serialize("json", customers)
@@ -62,12 +63,24 @@ def sales(request):
 @csrf_exempt
 def transactions(request):
     if request.method == 'GET':
-      return HttpResponse('BadRequest')
+        return HttpResponse('BadRequest')
     if request.method == 'POST':
         #print(request.body)
         #print(request.body.decode('utf-8'))
         json_data = json.loads(request.body.decode('utf-8'))
         #print('still here 1')
+        #transactionhelper
         saveTransactionPost(json_data)
         #print('still here 2')
+    return HttpResponse('Done')
+
+
+@csrf_exempt
+def deposit(request):
+    if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+        #transactionhelper
+        makeDeposit(json_data)
+
+
     return HttpResponse('Done')
