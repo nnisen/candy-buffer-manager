@@ -6,10 +6,11 @@ var spareMeClass = "spare-me-please" // to skip when deleting
 
 // "validation" check: colors elem text red on a subzero value
 function redCheck(value, elem){  
+  /*
   console.log("redCheck")
   console.log(value)
   console.log(elem)
-  
+  */  
   var origAttrName = "data-original-color";
   var badColor = "red";
   
@@ -44,6 +45,8 @@ function changeSubpage(srcnum, tgtnum){
       frontPageButton.css("display","none");
       backButton.css("display","block");
     }
+    
+    window.scrollTo(0,0);
 };
 
 // checks & returns validity, also shows invalidity indicator
@@ -144,9 +147,11 @@ function listProducts(parentElem, sumTargetElem){
   var priceSum = 0.0;  
   // work from the back and prepend children to keep the sum line at the bottom
   for(var i = basket.length-1; i >= 0; i--){
+    /*
     console.log(basket)
     console.log(basket.length)
     console.log(i)
+    */
     var tr = $("<tr/>");
     var td1 = $("<td/>");
     var td2 = $("<td/>");    
@@ -294,20 +299,20 @@ $(document).ready(function(){
       
           // transaction success gets the customer from the db for the confirmation
           var customerJSON = $.get("/customer?customer_id="+buyingMessageObject.customerId).success(function(){
-          
+          /*
           console.log("customerJSON");
           console.log(customerJSON);
-                    
+            */        
           var customer = customerJSON.responseJSON[0];
           var name = customer.fields.username;
           var balance = customer.fields.balance;
           
           $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");          
-          $("#page-4-success-overview-customer").text("Käyttäjä "+name);
+          $("#page-4-success-overview-customer").text("Olit käyttäjä "+name+",");
           
           var balanceTarget = $("#page-4-success-overview-balance");          
           redCheck(balance, balanceTarget);          
-          balanceTarget.text("Bufferissa rahaa jäljellä "+parseFloat(balance).toFixed(2) + " €");
+          balanceTarget.text("Bufferissassi on rahaa jäljellä "+parseFloat(balance).toFixed(2) + " €");
           
           reset();
           

@@ -108,7 +108,7 @@ footer {
 }
 
 #maincontainer-back {
-  /*height : 500px;*/
+  padding : 2em 10%;
 }
 
 .subpage{
@@ -117,24 +117,27 @@ footer {
 }
 
 .navbuttons button {
-margin : 0.5em;
+  margin : 0.5em;
 }
 
 .category-button {    
-  margin : 1em 0.5em;
-  padding : 1em 0.5em;
-  /*border-radius : 1em;*/
+  margin : 0.5em 0.5em;
+  padding : 0.1em 0.5em;
   border-style : inset;
   border-width : 5px;
   transition: all 0.2s ease 0s;
 }
 
-.category-button.selected {
-  background: #79b654
+.lightergreen, .category-button {
+	background-color: #8f6;
+}
+
+.category-button.selected-category{
+  background: #6a3
 }
 
 .category-button:hover {
-  background: #599634
+  background: #371
 }
 
 .green {

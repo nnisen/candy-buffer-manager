@@ -17,7 +17,7 @@ function getProductDropdownElement(productInfo){
     listremove.addClass("basket-product-remover")
     listremove.addClass("btn")
     listremove.addClass("btn-danger")    
-    listremove.click(function(){console.log("clicked!")})
+    //listremove.click(function(){//console.log("clicked!")})
     
     $(listlink).append(listremove);
     $(listelem).append(listlink);
@@ -81,7 +81,7 @@ function productAddButtonFunction(buttonelem){
   };
 
   productBasket[productBasket.length] = productInfo;
-  console.log(productBasket);    
+  //console.log(productBasket);    
   
   // loads to list
   var newElem = getProductDropdownElement(productInfo);  
@@ -114,9 +114,9 @@ $(document).ready(function(){
   
   $("#go-to-buy").click(function(){
     Cookies.remove("basket");
-    console.log("click")
+    //console.log("click")
     Cookies.set("basket",productBasket);
-    console.log(Cookies.get("basket"));
+    //console.log(Cookies.get("basket"));
   });
   
   $(".add-product-to-basket").click(function(){    
