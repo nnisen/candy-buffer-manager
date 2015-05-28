@@ -64,6 +64,9 @@ class Transaction(models.Model):
     def __str__(self):
         return "%s, %s" % (self.customer.username, self.get_date_string())
 
+    class Meta:
+        ordering = ["-timestamp"]
+
 
 class Sale(models.Model):
     price_at_sale_time = models.DecimalField(
