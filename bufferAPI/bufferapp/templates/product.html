@@ -1,6 +1,5 @@
 {% if product_list %}
 {% for product in product_list %}
-
 <div data-product-id={{product.id}} data-product-name="{{product.name}}" data-product-price={{product.price}} data-product-categories="[{% for category in product.categories.all %}{{ category.id }},{% endfor %}]"
     class="product col-xs-4 col-sm-3 col-md-2">
   <div class="thumbnail">   

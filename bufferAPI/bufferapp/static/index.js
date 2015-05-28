@@ -1,6 +1,6 @@
 ﻿var categories = [];
 var selectClass = "selected-category";
-var dataAttr = "data-category-id";
+var dataAttr = "data-product-categories";
 
 function updateDisplay(){
   var prods = $(".product");
@@ -9,26 +9,34 @@ function updateDisplay(){
   var activeCategories = [];
   
   for(var i = 0; i < categoryButtons.length; i++){
-     activeCategories.push(categoryButtons[i].attr(dataAttr));
+     activeCategories.push(parseInt($(categoryButtons[i]).attr(dataAttr)));
   }
-  
+  /*
+  console.log("activeCategories:");
+  console.log(activeCategories);
+  */
   // show/hide prods
   for(var i = 0; i < prods.length; i++){
     var found = false;
-    var catgIds = JSON.parse(prods[i].attr(dataAttr));
+    //console.log(prods[i]);
+    //console.log($(prods[i]).attr(dataAttr));    
+    var catgIds = JSON.parse($(prods[i]).attr(dataAttr).replace(",]","]"));
+    //console.log("catgIds:");
+    //console.log(catgIds);
     
     for(var j = 0; j < catgIds.length; j++){
-      if(activeCategories.indexOf(catgIds[j])){
-        found = true;
+      if($.inArray(catgIds[j], activeCategories) > -1){        
+        found = true;                
         break;
       }
     }       
 
-    if(found)
+    if(found){
       $(prods[i]).show();
-    else 
+    } else {
       $(prods[i]).hide();    
-  }
+    }    
+  }  
 }
 
 function getCategoryButton(category){
@@ -49,6 +57,7 @@ function getCategoryButton(category){
     else
       $(this).addClass(selectClass);
     
+    updateDisplay(this);
   });  
   return div;
 }

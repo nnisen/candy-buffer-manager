@@ -55,7 +55,19 @@
       <div id="page-1-money-submit" sourcepage="1" targetpage="2" class="subpage-submit btn btn-default">
         Jatka >>
       </div>
-
+      
+      <div id="page-1-payfrombuffer" class="btn btn-default">
+        Maksa bufferista >>
+      </div>
+      <script>
+      $("#page-1-payfrombuffer").click(function(){      
+        $("#page-1-money-input").val("0");
+        $("#page-1-money-submit").click();      
+      });
+      </script>
+      
+      
+      
       </div>
       
       <div class="subpage" id="page-2" style="display:none">
@@ -88,38 +100,24 @@
       <span class="bold">Ostoksesi :</span>
       
       <table class="table table-striped">
-      <tbody id="page-3-product-list">      
-      <tr class="spare-me-please"><td>Summa : </td><td><span id="page-3-product-sum"></span> €</td></tr>
-      </tbody>
+        <tbody id="page-3-product-list">      
+          <tr class="spare-me-please"><td>Summa : </td><td><span id="page-3-product-sum"></span> €</td></tr>
+        </tbody>
       </table>
       
       <hr/>      
-      <!--
       
-      <table class="table" id="page-3-product-list">      
-      </table>
-      
-      -->
         <div class="summary-parent">
           
           <table class="table table-striped">
-          <tbody>
-          <!--<tr><td>Ostosten summa:                  </td><td><span id="page-3-product-sum"></span> €</td></tr>-->
-          <tr><td>Käteinen:                        </td><td><span id="page-3-input-cash"></span> €</td></tr>  
-          <tr><td>Valittu käyttäjä:                </td><td><span id="page-3-customer-name"></span></td></tr>
-          <tr><td>Rahaa bufferissa nyt:            </td><td><span id="page-3-customer-balance"></span> €</td></tr>
-          <tr><td>Rahaa bufferissa oston jälkeen:  </td><td><span id="page-3-final-balance"></span> €</td></tr>
-          </tbody>
+            <tbody>      
+              <tr><td>Käteinen:                        </td><td><span id="page-3-input-cash"></span> €</td></tr>  
+              <tr><td>Valittu käyttäjä:                </td><td><span id="page-3-customer-name"></span></td></tr>
+              <tr><td>Rahaa bufferissa nyt:            </td><td><span id="page-3-customer-balance"></span> €</td></tr>
+              <tr><td>Rahaa bufferissa oston jälkeen:  </td><td><span id="page-3-final-balance"></span> €</td></tr>
+            </tbody>
           </table>
           <p>&nbsp;</p>
-          <!--
-          <p>Ostosten summa:                  <span id="page-3-product-sum"></span> €</p>
-          <p>Käteinen:                        <span id="page-3-input-cash"></span> €</p>        
-          <p>Valittu käyttäjä:                <span id="page-3-customer-name"></span></p>
-          <p>Rahaa bufferissa nyt:            <span id="page-3-customer-balance"></span> €</p>
-          <p>Rahaa bufferissa oston jälkeen:  <span id="page-3-final-balance"></span> €</p>
-          <p>&nbsp;</p>
-          -->          
           
           <div sourcepage="3" targetpage="4" class="subpage-submit btn btn-default">
             OSTA
