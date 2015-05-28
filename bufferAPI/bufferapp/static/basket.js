@@ -11,7 +11,7 @@ function getProductDropdownElement(productInfo){
     
     listlink.attr("href","#");
     listlink.text(""+productInfo.name+", "+productInfo.price + " e");
-    listlink.addClass("basket-product-info")
+    listlink.addClass("basket-product-info");
         
     listremove.text("X");
     listremove.addClass("basket-product-remover")
@@ -73,11 +73,18 @@ function productAddButtonFunction(buttonelem){
   var prodId = product.attr("data-product-id");
   var prodPrice = product.attr("data-product-price");
   var prodName = product.attr("data-product-name");
-   
+  var prodCategories = product.attr("data-product-categories");
+  
+  var tempcat = JSON.parse(prodCategories);
+  /*for(var i = 0; tempcat < tempcat.length; i++){  
+    tempcat
+  }*/
+  
   var productInfo = {
     id : parseInt(prodId),
     price : parseFloat(prodPrice),
-    name : prodName
+    name : prodName,
+    categories : tempcat
   };
 
   productBasket[productBasket.length] = productInfo;

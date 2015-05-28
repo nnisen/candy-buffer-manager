@@ -28,7 +28,6 @@ def products(request):
 
 
 def product(request, product_id):
-    # response = "You're looking at the results of question %s."
     product_item = Product.objects.get(id=product_id)
     data = serializers.serialize("json", [product_item])
     return HttpResponse(data, content_type="application/json")
