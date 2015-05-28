@@ -1,0 +1,22 @@
+{% if product_list %}
+{% for product in product_list %}
+<div data-product-id={{product.id}} data-product={{product}} data-product-name="{{product.name}}" data-product-price={{product.price}} data-product-categories="[0{% for category in product.categories.all %},{{ category.id }}{% endfor %}]"
+    class="product col-xs-4 col-sm-3 col-md-2">
+  <div class="thumbnail">
+    <div class="prod-img-wrapper">
+      <img class="productimage" src="{{MEDIA_URL}}{{product.image}}"/>
+        </div>
+        <div class="productInsideItem">
+           {{product.name}}
+        </div>
+        <hr>
+        <div class="col-sm-6 productInsideItem">
+           {{product.price}} e
+        </div>
+        <div class="col-sm-6 productInsideItem">
+            <a href="#" class="add-product-to-basket btn btn-success center-block" role="button">Lis&auml;&auml;</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}

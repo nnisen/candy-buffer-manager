@@ -1,0 +1,188 @@
+﻿body {
+  overflow-y : auto;
+  overflow-x : hidden;
+  font-size : 1.8em !important;
+  min-width : 900px;
+  padding-top: 5%;
+}
+
+.prod-img-wrapper{
+  height:100%;
+  max-height:150px;
+}
+
+.bold{
+  font-weight : bold;
+}
+
+.product{
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.thumbnail{
+  min-height : 160px;
+  /*max-height : 160px;*/
+  overflow:hidden;
+  border: 1px solid #B4B4B4;
+
+  border-radius: 0px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+}
+.productimage {
+  min-height : 100px;
+  max-height : 100px;
+  max-width : auto;
+}
+.productInsideItem{
+  padding: 0px;
+  word-wrap: break-word;
+}
+
+.centeredItem{
+  float: none;
+  margin: 0 auto;
+}
+
+.basket-product-info {
+   margin-right: 3em;
+   padding-right: 1em;
+}
+
+.basket-product-remover{
+  position:absolute;
+  width:2em;
+  right : 0.5em;
+  padding: 0.1em;
+  font-weight:bold;
+  /*color:#e33;*/
+  border-radius : 0.2em;
+}
+
+.basket-product-remover:hover{
+  /*color:#f33;*/
+}
+
+.btn-success{
+  /*background-image: linear-gradient(to bottom,#5cb85c 0,#419641 100%);*/
+}
+
+li {
+  list-style-type: none;
+}
+
+.customer-row#selected-customer{
+  background-color : #99f;
+}
+.customer-row:hover {
+  cursor : pointer;
+}
+
+header {
+  /*height : 5%;*/
+}
+
+hr{
+  margin-bottom: 3px;
+  margin-top: -2px;
+  border-top: 1px solid #B4B4B4;
+}
+
+.belowheader {
+  /*height : 95%;*/
+}
+
+#maincontainer {
+  overflow: visible;
+
+}
+
+#product-box{
+  overflow: visible;
+  height: inherit;
+
+}
+
+aside#aside {
+  position : relative;
+  top: 0px;
+  bottom: 0px;
+  padding : 0;
+  display: inline-block;
+  float: left;
+}
+
+.aside-inner {
+  padding-top: 1.5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  width : 100%;
+  height: 100%;
+}
+
+footer {
+  position : absolute;
+  display: inline-block;
+  bottom : 0px;
+}
+
+
+#maincontainer, #maincontainer-back {
+  position : absolute;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+/*  min-height : 500px;*/
+
+  /*right: 0px;*/
+}
+
+#maincontainer-back {
+  padding : 2em 10%;
+}
+
+.subpage{
+    height: 100%;
+    padding : 3em;
+}
+
+.navbuttons button {
+  margin : 0.5em;
+}
+
+.category-button {
+  margin : 0.5em 0.5em;
+  padding : 0.1em 0.5em;
+  width : 8em;
+/*
+.category-button {
+  margin : 1em 0.5em;
+  padding : 1em 0.5em;
+*/
+  border-style : inset;
+  border-width : 5px;
+
+  transition: all 0.2s ease 0s;
+}
+
+.lightergreen, .category-button {
+	background-color: #8f6;
+}
+
+.category-button.selected-category{
+  background: #6a3
+}
+
+.category-button:hover {
+  background: #371
+}
+
+.green {
+	background-color: #79b654;
+  padding: 10px;
+}
+
+.lightgreen {
+	background-color: #99d674;
+}
