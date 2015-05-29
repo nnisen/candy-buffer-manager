@@ -97,6 +97,18 @@ function productAddButtonFunction(buttonelem){
     productRemoveButtonFunction(this);
   });  
   updateBasket();
+  
+  var interval = 50  
+  $("#basket-dropdown").fadeOut(interval*1).fadeIn(interval*3);//.fadeOut(interval*1).fadeIn(interval*2);
+  /*
+  var dd = $("#basket-dropdown");
+  dd.css("border-width","10px");
+  dd.css("border-color","red");
+  setTimeout(function(){
+    dd.css("border-width","0");
+    dd.css("border-color","yellow");
+  },5000);
+  */
 }
 
 $(document).ready(function(){     
