@@ -31,7 +31,7 @@ function listCustomers(parentElem){
       
       var listBalanceSpan = $("<td/>");
       listBalanceSpan.addClass("customer-balance");
-      listBalanceSpan.text("   "+customers[i].balance);
+      listBalanceSpan.text(customers[i].balance+" €");
       
       listElem.append(listNameSpan);
       listElem.append(listBalanceSpan);
@@ -83,7 +83,7 @@ function listProducts(parentElem, sumTargetElem){
     var td1 = $("<td/>");
     var td2 = $("<td/>");    
     td1.text(basket[i].name);
-    td2.text(basket[i].price +" €");
+    td2.text(basket[i].price.toFixed(2) +" €");
     priceSum = priceSum + basket[i].price;
     tr.append(td1);
     tr.append(td2);

@@ -74,6 +74,9 @@ function reset(){
 
 $(document).ready(function(){
   
+  // scroll to top
+  window.scrollTo(0,0);
+  
   // we assume that the basket is valid
   basket = JSON.parse(Cookies.get("basket"));
   
