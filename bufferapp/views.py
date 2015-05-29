@@ -38,7 +38,7 @@ def customer(request):
 
 
 def customers(request):
-    customers = Customer.objects.all()
+    customers = Customer.objects.all().order_by('username')
     data = serializers.serialize("json", customers)
     return HttpResponse(data, content_type="application/json")
 
@@ -70,7 +70,7 @@ def deposit(request):
     if request.method == 'GET':
         return render(request, 'deposit.html')
     if request.method == 'POST':
-        json_data = json.loads(request.body.decode('utf-8'))        
+        json_data = json.loads(request.body.decode('utf-8'))
         value = makeDeposit(json_data)
         if value:
             return value
