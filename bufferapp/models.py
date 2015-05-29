@@ -20,7 +20,7 @@ class Customer(models.Model):
         self.save()
 
     def __str__(self):
-        return self.username
+        return '%s,    %s€' % (self.username, self.balance)
 
 
 class Category(models.Model):
