@@ -37,7 +37,7 @@
 }
 .productInsideItem{
   padding: 0px;
-  word-wrap: break-word;
+  white-space:nowrap;
 }
 
 .centeredItem{
