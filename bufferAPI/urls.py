@@ -5,16 +5,15 @@ from django.conf.urls.static import static
 
 urlpatterns = patterns('',
     #url(r'^test$', 'bufferapp.views.test'),
-    
+
     url(r'^$', 'bufferapp.views.index'),
-    url(r'^back$', 'bufferapp.views.back'),       
-    url(r'^products$', 'bufferapp.views.products'),    
+    url(r'^back$', 'bufferapp.views.back'),
+    url(r'^products$', 'bufferapp.views.products'),
     url(r'^products/(?P<product_id>[0-9]+)/$', 'bufferapp.views.product'),
     url(r'^categories$', 'bufferapp.views.catgories'),
     url(r'^customers$', 'bufferapp.views.customers'),
     #url(r'^customer/(?P<customer_id>[0-9]+)/$', 'bufferapp.views.customer'),
     url(r'^customer$', 'bufferapp.views.customer'),
-    url(r'^sales$', 'bufferapp.views.sales'),
     url(r'^transactions$', 'bufferapp.views.transactions'),
     url(r'^deposit$', 'bufferapp.views.deposit'),
     url(r'^bufferapp/', include('bufferapp.urls')),
