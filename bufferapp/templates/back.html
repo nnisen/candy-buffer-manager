@@ -6,32 +6,22 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">  
   <link rel="stylesheet" href="/static/index.css">
   <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>  
   <script src="/static/js.cookie.js"></script>      
+  <script src="/static/common.js"></script>      
   <script src="/static/back.js"></script>      
 </head>
 <body>
-
   <header class="green">    
-    <div class="btn-group navbuttons btn-group-justified" role="group">
+    <div class="navbuttons back-navbuttons btn-group-justified" role="group">
       <div class="btn-group" role="group">
-
         <a href="/" id="subpage-to-front-page"><button type="button" class="btn btn-default"><< Etusivulle</button></a>        
-        <a href="#" id="subpage-back" style="display:none"><button type="button" class="btn btn-default">< Edellinen</button></a>
-        
-      </div>
-      
-      <div class="btn-group" role="group">
-        
-      </div>
+        <a href="#" id="subpage-back" style="display:none"><button type="button" class="btn btn-default">< Edellinen</button></a>        
+      </div>            
     </div>
   </header>
 
   <div class="belowheader" id="maincontainer-back">    
-      <!--
-      <aside class="col-xs-3 col-sm-2 col-md-2 lightgreen">
-
-      </aside>-->
 
       <div class="subpage" id="page-1">      
       
@@ -44,11 +34,6 @@
       </tbody>
       </table>
       
-      <!--
-      <ul id="page-1-product-list">      
-      </ul>      
-      <p>Summa : <span id="page-1-product-sum"></span> €</p>
-      -->
       <span>Paljonko maksoit?</span>
       <input id="page-1-money-input" type="text"></input>      
       
@@ -58,18 +43,9 @@
       
       <div id="page-1-payfrombuffer" class="btn btn-default">
         Maksa bufferista >>
-      </div>
-      <script>
-      $("#page-1-payfrombuffer").click(function(){      
-        $("#page-1-money-input").val("0");
-        $("#page-1-money-submit").click();      
-      });
-      </script>
+      </div>      
       
-      
-      
-      </div>
-      
+      </div>      
       <div class="subpage" id="page-2" style="display:none">
 
         <span>Kuka olet?</span>
@@ -77,11 +53,7 @@
        <table class="table table-striped table-hover">
        <tbody id="page-2-customer-list">
        </tbody>
-       </table>
-       <!--
-       <ul id="page-2-customer-list">
-       </ul>
-        -->
+       </table>       
         <p>
         <span>Valitsemasi käyttäjä : </span>
         <span id="selected-customer-span"></span>         
@@ -94,31 +66,27 @@
       </div>
       
       <div class="subpage" id="page-3" style="display:none">
-
         <h3>Yhteenveto</h3>
         <hr/>
       <span class="bold">Ostoksesi :</span>
       
       <table class="table table-striped">
-        <tbody id="page-3-product-list">      
+        <tbody id="page-3-product-list">
           <tr class="spare-me-please"><td>Summa : </td><td><span id="page-3-product-sum"></span> €</td></tr>
         </tbody>
       </table>
-      
-      <hr/>      
-      
-        <div class="summary-parent">
-          
+
+      <hr/>
+        <div class="summary-parent"> 
           <table class="table table-striped">
-            <tbody>      
+            <tbody>
               <tr><td>Käteinen:                        </td><td><span id="page-3-input-cash"></span> €</td></tr>  
               <tr><td>Valittu käyttäjä:                </td><td><span id="page-3-customer-name"></span></td></tr>
               <tr><td>Rahaa bufferissa nyt:            </td><td><span id="page-3-customer-balance"></span> €</td></tr>
               <tr><td>Rahaa bufferissa oston jälkeen:  </td><td><span id="page-3-final-balance"></span> €</td></tr>
             </tbody>
           </table>
-          <p>&nbsp;</p>
-          
+          <p>&nbsp;</p>          
           <div sourcepage="3" targetpage="4" class="subpage-submit btn btn-default">
             OSTA
           </div>

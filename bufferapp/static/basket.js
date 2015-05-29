@@ -16,8 +16,7 @@ function getProductDropdownElement(productInfo){
     listremove.text("X");
     listremove.addClass("basket-product-remover")
     listremove.addClass("btn")
-    listremove.addClass("btn-danger")    
-    //listremove.click(function(){//console.log("clicked!")})
+    listremove.addClass("btn-danger")        
     
     $(listlink).append(listremove);
     $(listelem).append(listlink);
@@ -43,6 +42,11 @@ function updateBasket(){
   $("#basket-prods").text(productBasket.length);
   $("#basket-sum").text(prodSum.toFixed(2));
 
+  if(productBasket.length)
+    $("#go-to-buy").removeAttr('disabled');    
+  else
+    $("#go-to-buy").attr('disabled','disabled');
+  
   // deals with empty basket ui
   var cls = "empty-basket-list-element";
   var selector = "."+cls;
@@ -53,8 +57,8 @@ function updateBasket(){
   if(!productBasket.length)    
     $("#basket-dropdown .basket-list").append(getEmptyDropdownElement(cls));  
   
-  // overwrites the cookie-basket  
-  Cookies.set("basket",productBasket);
+  // writes to the cookie-basket
+  Cookies.set("basket",productBasket);    
 }
 
 function productRemoveButtonFunction(elem){
@@ -75,20 +79,13 @@ function productAddButtonFunction(buttonelem){
   var prodName = product.attr("data-product-name");
   var prodCategories = product.attr("data-product-categories");
   
-  var tempcat = JSON.parse(prodCategories);
-  /*for(var i = 0; tempcat < tempcat.length; i++){  
-    tempcat
-  }*/
-  
   var productInfo = {
     id : parseInt(prodId),
     price : parseFloat(prodPrice),
     name : prodName,
-    categories : tempcat
+    categories : JSON.parse(prodCategories)
   };
-
   productBasket[productBasket.length] = productInfo;
-  //console.log(productBasket);    
   
   // loads to list
   var newElem = getProductDropdownElement(productInfo);  
@@ -98,25 +95,17 @@ function productAddButtonFunction(buttonelem){
   });  
   updateBasket();
   
-  var interval = 50  
-  $("#basket-dropdown").fadeOut(interval*1).fadeIn(interval*3);//.fadeOut(interval*1).fadeIn(interval*2);
-  /*
-  var dd = $("#basket-dropdown");
-  dd.css("border-width","10px");
-  dd.css("border-color","red");
-  setTimeout(function(){
-    dd.css("border-width","0");
-    dd.css("border-color","yellow");
-  },5000);
-  */
+  var interval = 50;
+  $("#basket-dropdown").fadeOut(interval*1).fadeIn(interval*2).fadeOut(interval*1).fadeIn(interval*2);
 }
 
 $(document).ready(function(){     
   
   // loads from cookies if no prods are in basket
-  if(!productBasket.length && Cookies.get("basket").length)
+  var cookieBasket = Cookies.get("basket");
+  if(!productBasket.length &&  cookieBasket && cookieBasket.length)
   {
-    productBasket = JSON.parse(Cookies.get("basket"));
+    productBasket = JSON.parse(cookieBasket);
     
     for(var i = 0; i < productBasket.length; i++){
     // loads to list as well

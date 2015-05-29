@@ -6,21 +6,13 @@ import json
 from .models import Product, Category, Customer, Sale
 from .transactionHelper import *
 
-
-# test page
-def test(request):
-    return HttpResponse("Yay, test page")
-
-
 # front page
 def index(request):
     return render(request, 'index.html')
 
-
 # "backend" page
 def back(request):
     return render(request, 'back.html')
-
 
 def products(request):
     context = {"product_list": Product.objects.all()}
@@ -50,7 +42,6 @@ def customers(request):
     data = serializers.serialize("json", customers)
     return HttpResponse(data, content_type="application/json")
 
-
 @csrf_exempt
 def sales(request):
     return HttpResponse('lol')
@@ -76,13 +67,12 @@ def transactions(request):
 
 @csrf_exempt
 def deposit(request):
+    if request.method == 'GET':
+        return render(request, 'deposit.html')
     if request.method == 'POST':
-        json_data = json.loads(request.body.decode('utf-8'))
-        #transactionhelper
-        #return error if detected
+        json_data = json.loads(request.body.decode('utf-8'))        
         value = makeDeposit(json_data)
         if value:
             return value
 
     return HttpResponse('Done')
-
