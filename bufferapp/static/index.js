@@ -2,7 +2,7 @@
 var selectClass = "selected-category";
 var dataAttr = "data-product-categories";
 
-// updates product visibility based on selected categories
+// updates product visibility based on category filter
 function updateDisplay(){
   var prods = $(".product");
   var categoryButtons = $("."+selectClass);
@@ -12,18 +12,11 @@ function updateDisplay(){
   for(var i = 0; i < categoryButtons.length; i++){
      activeCategories.push(parseInt($(categoryButtons[i]).attr(dataAttr)));
   }
-  /*
-  console.log("activeCategories:");
-  console.log(activeCategories);
-  */
+  
   // show/hide prods
   for(var i = 0; i < prods.length; i++){
     var found = false;
-    //console.log(prods[i]);
-    //console.log($(prods[i]).attr(dataAttr));    
     var catgIds = JSON.parse($(prods[i]).attr(dataAttr).replace(",]","]"));
-    //console.log("catgIds:");
-    //console.log(catgIds);
     
     for(var j = 0; j < catgIds.length; j++){
       if($.inArray(catgIds[j], activeCategories) > -1){        
@@ -63,6 +56,7 @@ function getCategoryButton(category){
   return div;
 }
 
+// gets categories, saves to var, adds buttons
 function initCategories(){
   var cagresp = $.get("/categories").success(function(){
     var cags = JSON.parse(cagresp.responseText);
@@ -79,20 +73,18 @@ function initCategories(){
     for(var i = 0; i < categories.length; i++){            
       $(".category-buttons").append(getCategoryButton(categories[i]));
     }
-    
   });
 }
 
 $(document).ready(function(){
   var box = $("#productbox");  
   
+  // ajax the products into the page
   var all = $.get("products").success(function(){
     $(all.responseText).appendTo(box);   
     $(".add-product-to-basket").on("click", function(){
       productAddButtonFunction(this);    
     });
-  });
-  
-  
+  });  
   initCategories();
 });

@@ -2,7 +2,7 @@
 var basket;
 var inputCash;
 var activeCustomer;
-var spareMeClass = "spare-me-please" // to skip when deleting children
+var spareMeClass = "spare-me-please" // class to skip when deleting elems
 
 // colors elem text red on a subzero number value
 function redCheck(value, elem){  
@@ -11,12 +11,12 @@ function redCheck(value, elem){
   var badColor = "red";
   
   if(elem.css("color") !== badColor)
-    elem[origAttrName] = elem.css("color");
+    elem.attr(origAttrName, elem.css("color"));
             
   if(parseFloat(value) < 0){ 
     elem.css("color",badColor);
   }else{
-    elem.css("color",elem[origAttrName]);
+    elem.css("color",elem.attr(origAttrName));
   }
 }
 
@@ -29,7 +29,8 @@ function changeSubpage(srcnum, tgtnum){
       $("#page-"+tgtnum).show();
       activeSubpage = tgtnum;
     }
-    else throw new Error("NO SUCH SUBPAGE AAARGHHH");
+    else 
+      throw new Error("tgtnum = "+tgtnum+" - NO SUCH SUBPAGE");
     
     var frontPageButton = $("#subpage-to-front-page");
     var backButton = $("#subpage-back");
@@ -42,6 +43,7 @@ function changeSubpage(srcnum, tgtnum){
       backButton.css("display","block");
     }
     
+    // scroll to top
     window.scrollTo(0,0);
 };
 
@@ -62,7 +64,7 @@ function validateMoneyInput(){
   return true;
 }
 
-// resets status
+// resets state, empties data
 function reset(){
   var basket = null;
   var inputCash = null;
@@ -72,33 +74,34 @@ function reset(){
 
 $(document).ready(function(){
   
-  // we assume that basket has stuff
+  // we assume that the basket is valid
   basket = JSON.parse(Cookies.get("basket"));
   
   listProducts($("#page-1-product-list"), $("#page-1-product-sum"));
-      
+  
+  // straight-from-buffer option
   $("#page-1-payfrombuffer").click(function(){      
     $("#page-1-money-input").val("0");
     $("#page-1-money-submit").click();      
   });
     
+  // back button click handling  
   $("#subpage-back").on("click", function(){
     if(activeSubpage > 1)
       changeSubpage(activeSubpage, activeSubpage-1);
   });
   
-  // validates on change
+  // validates money input on change
   $("#page-1-money-input").change(function(){
     validateMoneyInput();
   });
   
-  // page changer buttons
+  // page changer button click handling
   $(".subpage-submit").on("click", function(){
 
     var sourcepage = parseInt($(this).attr("sourcepage"));
     var targetpage = parseInt($(this).attr("targetpage"));
     
-    // money submit & validation
     if($(this).attr("id") == "page-1-money-submit"){
       if(!validateMoneyInput())
         return;
@@ -131,7 +134,7 @@ $(document).ready(function(){
       finalBalanceTargetElem.text(finalBalance.toFixed(2));      
     }
     
-    if(sourcepage === 3 && targetpage === 4){
+    if(targetpage === 4){
       var parent = $(this).find(".summary-parent");
       var prefix = "page-3-";
       
@@ -159,29 +162,28 @@ $(document).ready(function(){
         "products"   : prodIdArr
       };
       
-      $.ajax({      
+      $.ajax({
         url : "/transactions", 
         type : "POST",
         data: JSON.stringify(buyingMessageObject),
         contentType : "application/json"
-      }).success(function(){      
+      }).success(function(){
+          // buying has been completed with success!
       
-          // transaction success gets the customer from the db for the confirmation
+          // re-gets the customer from the db for validation          
           var customerJSON = $.get("/customer?customer_id="+buyingMessageObject.customerId).success(function(){
-
+          
           var customer = customerJSON.responseJSON[0];
           var name = customer.fields.username;
-          var balance = customer.fields.balance;
+          var balance = customer.fields.balance;          
+          var balanceTarget = $("#page-4-success-overview-balance");                    
+          redCheck(balance, balanceTarget);
           
           $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");          
-          $("#page-4-success-overview-customer").text("Olit käyttäjä "+name+",");
-          
-          var balanceTarget = $("#page-4-success-overview-balance");          
-          redCheck(balance, balanceTarget);          
+          $("#page-4-success-overview-customer").text("Olit käyttäjä "+name+",");          
           balanceTarget.text("Bufferissasi on rahaa jäljellä "+parseFloat(balance).toFixed(2) + " €");
           
-          reset();
-          
+          reset();          
         }).fail(function(){        
           $("#page-4-success-confirmation").text("Tapahtui virhe.");
         });        

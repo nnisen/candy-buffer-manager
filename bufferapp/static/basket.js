@@ -63,7 +63,7 @@ function updateBasket(){
 
 function productRemoveButtonFunction(elem){
   
-  // relies on basket order == list order
+  // counts on products being added to both json and list in the same order
   var listParent = $(elem).parents("."+listItemClass);  
   productBasket.splice($(listParent).index(), 1);
   
@@ -85,6 +85,7 @@ function productAddButtonFunction(buttonelem){
     name : prodName,
     categories : JSON.parse(prodCategories)
   };
+  
   productBasket[productBasket.length] = productInfo;
   
   // loads to list
@@ -96,7 +97,8 @@ function productAddButtonFunction(buttonelem){
   updateBasket();
   
   var interval = 50;
-  $("#basket-dropdown").fadeOut(interval*1).fadeIn(interval*2).fadeOut(interval*1).fadeIn(interval*2);
+  $("#basket-dropdown").fadeOut(interval*1).fadeIn(interval*2)
+    .fadeOut(interval*1).fadeIn(interval*2);
 }
 
 $(document).ready(function(){     
@@ -116,15 +118,12 @@ $(document).ready(function(){
       });          
     }
     updateBasket();
-  }
-    
+  }    
   updateBasket();
   
   $("#go-to-buy").click(function(){
     Cookies.remove("basket");
-    //console.log("click")
     Cookies.set("basket",productBasket);
-    //console.log(Cookies.get("basket"));
   });
   
   $(".add-product-to-basket").click(function(){    

@@ -9,6 +9,16 @@ body > *{
   padding-top: 4em;
 }
 
+footer {
+  position : absolute;
+  display: inline-block;
+  bottom : 0px;
+}
+
+li {
+  list-style-type: none;
+}
+
 .back-navbuttons{
   width: 50%;
 }
@@ -29,19 +39,19 @@ body > *{
 
 .thumbnail{
   min-height : 160px;
-  /*max-height : 160px;*/
   overflow:hidden;
   border: 1px solid #B4B4B4;
-
   border-radius: 0px;
   border-top-width: 0px;
   border-left-width: 0px;
 }
+
 .productimage {
   min-height : 100px;
   max-height : 100px;
   max-width : auto;
 }
+
 .productInsideItem{
   padding: 0px;
   white-space:nowrap;
@@ -67,57 +77,18 @@ body > *{
   border-radius : 0.2em;
 }
 
-.basket-product-remover:hover{
-  /*color:#f33;*/
-}
-
-.btn-success{
-  /*background-image: linear-gradient(to bottom,#5cb85c 0,#419641 100%);*/
-}
-
-li {
-  list-style-type: none;
-}
-
 .customer-row#selected-customer{
   background-color : #99f;
 }
+
 .customer-row:hover {
   cursor : pointer;
-}
-
-header {
-  /*height : 5%;*/
 }
 
 hr{
   margin-bottom: 3px;
   margin-top: -2px;
   border-top: 1px solid #B4B4B4;
-}
-
-.belowheader {
-  /*height : 95%;*/
-}
-
-#maincontainer {
-  overflow: visible;
-
-}
-
-#product-box{
-  overflow: visible;
-  height: inherit;
-
-}
-
-aside#aside {
-  position : relative;
-  top: 0px;
-  bottom: 0px;
-  padding : 0;
-  display: inline-block;
-  float: left;
 }
 
 .aside-inner {
@@ -128,25 +99,8 @@ aside#aside {
   height: 100%;
 }
 
-footer {
-  position : absolute;
-  display: inline-block;
-  bottom : 0px;
-}
-
-
-#maincontainer, #maincontainer-back {
-  position : absolute;
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-/*  min-height : 500px;*/
-
-  /*right: 0px;*/
-}
-
-#maincontainer-back {
-  padding : 2em 10%;
+.navbuttons button {
+  margin : 0.5em;
 }
 
 .subpage{
@@ -154,19 +108,10 @@ footer {
     padding : 3em;
 }
 
-.navbuttons button {
-  margin : 0.5em;
-}
-
 .category-button {
   margin : 0.5em 0.5em;
   padding : 0.1em 0.5em;
   width : 8em;
-/*
-.category-button {
-  margin : 1em 0.5em;
-  padding : 1em 0.5em;
-*/
   border-style : inset;
   border-width : 5px;
 
@@ -192,4 +137,34 @@ footer {
 
 .lightgreen {
 	background-color: #99d674;
+}
+
+#maincontainer, #maincontainer-back {
+  position : absolute;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+#maincontainer-back {
+  padding : 2em 10%;
+}
+
+#maincontainer {
+  overflow: visible;
+
+}
+
+#product-box{
+  overflow: visible;
+  height: inherit;
+}
+
+aside#aside {
+  position : relative;
+  top: 0px;
+  bottom: 0px;
+  padding : 0;
+  display: inline-block;
+  float: left;
 }

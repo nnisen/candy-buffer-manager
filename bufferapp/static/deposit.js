@@ -1,4 +1,5 @@
-﻿function depositSubmit(){
+﻿// validates input, sends a POST to deposit money
+function depositSubmit(){
   
   var input = $("#deposit-money-input");
   var responseBox = $("#response-box");  
@@ -42,8 +43,6 @@
     responseBox.text("Tapahtui virhe.");
   });
 }
-
-
 
 $(document).ready(function(){
   listCustomers($("#deposit-customer-list"));
