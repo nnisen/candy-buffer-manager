@@ -1,1 +1,1 @@
-web: gunicorn bufferapp.wsgi --log-file -
+web: gunicorn bufferAPI.wsgi --log-file -
