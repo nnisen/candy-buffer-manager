@@ -2,8 +2,11 @@
   overflow-y : auto;
   overflow-x : hidden;
   font-size : 1.8em !important;
-  min-width : 900px;
-  padding-top: 5%;
+  min-width : 900px;  
+}
+
+body > *{
+  padding-top: 4em;
 }
 
 .prod-img-wrapper{

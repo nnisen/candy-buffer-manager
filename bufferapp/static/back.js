@@ -310,9 +310,11 @@ $(document).ready(function(){
           $("#page-4-success-confirmation").text("Osto onnistui. Kiitos!");          
           $("#page-4-success-overview-customer").text("Olit käyttäjä "+name+",");
           
+          Cookies.remove("basket");
+          
           var balanceTarget = $("#page-4-success-overview-balance");          
           redCheck(balance, balanceTarget);          
-          balanceTarget.text("Bufferissassi on rahaa jäljellä "+parseFloat(balance).toFixed(2) + " €");
+          balanceTarget.text("Bufferissasi on rahaa jäljellä "+parseFloat(balance).toFixed(2) + " €");
           
           reset();
           
