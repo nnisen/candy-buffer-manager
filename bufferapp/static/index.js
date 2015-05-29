@@ -2,6 +2,7 @@
 var selectClass = "selected-category";
 var dataAttr = "data-product-categories";
 
+// updates product visibility based on selected categories
 function updateDisplay(){
   var prods = $(".product");
   var categoryButtons = $("."+selectClass);
